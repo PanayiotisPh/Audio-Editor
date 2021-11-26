@@ -46,6 +46,6 @@ typedef struct wave
  DATA_CHUNK *dataChunk;
 }WAVE; 
 
-void initialize(WAVE *wave);
+void initialize(WAVE *wave,char *fileName);
 
 #endif
