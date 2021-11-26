@@ -1,13 +1,19 @@
 #include "wave.h"
-
+/**
+ * @brief initializes a wave
+ * 
+ * @param wave allocate memory for wave before using the method
+ * @param fp .wav file pointer
+ */
 void initialize(WAVE *wave, FILE *fp){
-    
    	wave->dataChunk = (DATA_CHUNK*)malloc(sizeof(DATA_CHUNK));
     wave->riffChunk = (RIFF_CHUNK*)malloc(sizeof(RIFF_CHUNK));
 	wave->fmtChunk = (FMT_CHUNK*)malloc(sizeof(FMT_CHUNK));
+
     fread(wave->riffChunk,sizeof(RIFF_CHUNK),1,fp);
 	fread(wave->fmtChunk,sizeof(FMT_CHUNK),1,fp);
 	fread(wave->dataChunk,4+sizeof(dword),1,fp);
+
     wave->dataChunk->data= (byte*) malloc(wave->dataChunk->subchunk2Size);
     fread(wave->dataChunk->data,wave->dataChunk->subchunk2Size,1,fp);
 
