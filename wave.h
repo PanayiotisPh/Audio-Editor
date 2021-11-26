@@ -41,11 +41,11 @@ typedef struct data_chunk
 
 typedef struct wave
 { 
- RIFF_CHUNK *riff; 
- FMT_CHUNK *fmt;
- DATA_CHUNK *data;
+ RIFF_CHUNK *riffChunk; 
+ FMT_CHUNK *fmtChunk;
+ DATA_CHUNK *dataChunk
 }WAVE; 
 
-
+void initialize(WAVE *wave);
 
 #endif
