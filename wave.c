@@ -5,7 +5,13 @@
  * @param wave allocate memory for wave before using the method
  * @param fp .wav file pointer
  */
-void initialize(WAVE *wave, FILE *fp){
+void initialize(WAVE *wave, char *fileName){
+    FILE *fp = NULL;
+    fp = fopen(fileName, "rb");  
+    if(fp==NULL){
+        printf("file could not be opened or not found\n");
+        exit(-1);
+    } 
    	wave->dataChunk = (DATA_CHUNK*)malloc(sizeof(DATA_CHUNK));
     wave->riffChunk = (RIFF_CHUNK*)malloc(sizeof(RIFF_CHUNK));
 	wave->fmtChunk = (FMT_CHUNK*)malloc(sizeof(FMT_CHUNK));
@@ -31,22 +37,24 @@ void deallocWave(WAVE *wave){
 	free(wave->dataChunk);
 }
 
-
+#ifdef DEBUGWAVE
+#define DEBUGGING
 
 int main(int argc, char *argv[]){
     printf("%s %ld",argv[1],sizeof(byte));
     fflush(stdout);
     WAVE *wav=NULL;
     wav=(WAVE*)malloc(sizeof(WAVE));
-     FILE *fp = NULL;
-    fp = fopen(argv[1], "rb");  
-    if(fp==NULL){
-        printf("file could not be opened or not found\n");
-        exit(-1);
-    } 
-    initialize(wav,fp);
+    // FILE *fp = NULL;
+    // fp = fopen(argv[1], "rb");  
+    // if(fp==NULL){
+    //     printf("file could not be opened or not found\n");
+    //     exit(-1);
+    // } 
+    initialize(wav,argv[1]);
     printf("chunkId %s\nformat %s\nsubchunk1id %s\nsamplerate %d\nsubchunk2id %s\n subchunk2size %d",wav->riffChunk->chunkId, wav->riffChunk->format, wav->fmtChunk->subchunk1Id,wav->fmtChunk->sampleRate,wav->dataChunk->subchunk2Id,wav->dataChunk->subchunk2Size);
 
 
 }
+#endif
     
