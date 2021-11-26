@@ -11,6 +11,7 @@ void initialize(WAVE *wave, char *fileName){
 }
 
 void readWave(WAVE *wave, char *fileName){
+    FILE *fp = NULL
     FILE *fp = fopen(fileName, "rb");  
     if(fp==NULL){
         printf("file could not be opened or not found\n");
