@@ -16,7 +16,7 @@ void stereoToMono(char *input, char *output){
             readSample = !readSample;
         }
         if(readSample){
-            monoWave->dataChunk->data[insertCounter] = wave->dataChunk->data[i];
+            memcpy(monoWave)
             insertCounter++;
         }
     }
@@ -37,6 +37,7 @@ void stereoToMono(char *input, char *output){
 }
 
 void initializeMonoWave(WAVE *monoWave, WAVE *wave){
+    monoWave = (WAVE*) malloc(sizeof(WAVE));
     monoWave->dataChunk = (DATA_CHUNK*)malloc(sizeof(DATA_CHUNK));
     monoWave->riffChunk = (RIFF_CHUNK*)malloc(sizeof(RIFF_CHUNK));
 	monoWave->fmtChunk = (FMT_CHUNK*)malloc(sizeof(FMT_CHUNK)); 
@@ -59,9 +60,10 @@ void initializeMonoWave(WAVE *monoWave, WAVE *wave){
     strcpy((char *)monoWave->dataChunk->subchunk2Id, (char *)wave->dataChunk->subchunk2Id);
     int OldNumSample = (wave->dataChunk->subchunk2Size) / ((wave->fmtChunk->numChannels) * (wave->fmtChunk->bitsPerSample / 8));
     monoWave->dataChunk->subchunk2Size = (OldNumSample)*1 * (wave->fmtChunk->bitsPerSample / 8);    //mono subchunk2size
-    monoWave->dataChunk->data = (byte *)malloc(wave->dataChunk->subchunk2Size * sizeof(byte));
+    monoWave->dataChunk->data = (byte *)malloc(monoWave->dataChunk->subchunk2Size * sizeof(byte));
 }
 
-int main(int argc, int *argv){
-
+int main(int argc, char *argv[]){
+    stereoToMono(argv[1], argv[2]);
+    return 0;
 }
