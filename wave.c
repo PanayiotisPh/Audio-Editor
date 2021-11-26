@@ -1,25 +1,28 @@
 #include "wave.h"
 
 void initialize(WAVE *wave, FILE *fp){
-    wave=(WAVE*)malloc(sizeof(WAVE));
+    
    	wave->dataChunk = (DATA_CHUNK*)malloc(sizeof(DATA_CHUNK));
     wave->riffChunk = (RIFF_CHUNK*)malloc(sizeof(RIFF_CHUNK));
 	wave->fmtChunk = (FMT_CHUNK*)malloc(sizeof(FMT_CHUNK));
-    readWave(wave,fp);
+    fread(wave->riffChunk,sizeof(RIFF_CHUNK),1,fp);
+	fread(wave->fmtChunk,sizeof(FMT_CHUNK),1,fp);
+	fread(wave->dataChunk,sizeof(byte)*4+sizeof(dword),1,fp);
+    wave->dataChunk->data= (byte*) malloc(wave->dataChunk->subchunk2Size);
+    fread(wave->dataChunk->data,wave->dataChunk->subchunk2Size,1,fp);
 
 }
 
 void readWave(WAVE *wave, FILE *fp){
    
-    fread(wave,44,1,fp);
-    wave->dataChunk->data= (byte*) malloc(wave->dataChunk->subchunk2Size);
-    fread(wave,wave->dataChunk->subchunk2Size,1,fp);
+    
 }
 
 int main(int argc, char *argv[]){
     printf("%s",argv[1]);
     fflush(stdout);
     WAVE *wav=NULL;
+    wav=(WAVE*)malloc(sizeof(WAVE));
      FILE *fp = NULL;
     fp = fopen(argv[1], "rb");  
     if(fp==NULL){
