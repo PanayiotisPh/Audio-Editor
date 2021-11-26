@@ -38,7 +38,7 @@ int main(int argc, char *argv[]){
     fflush(stdout);
     WAVE *wav=NULL;
     wav=(WAVE*)malloc(sizeof(WAVE));
-     FILE *fp = NULL;
+    FILE *fp = NULL;
     fp = fopen(argv[1], "rb");  
     if(fp==NULL){
         printf("file could not be opened or not found\n");
