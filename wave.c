@@ -6,3 +6,11 @@ void initialize(WAVE *wave, char *fileName){
     wave->dataChunk->data= (byte*) malloc(wave->dataChunk->subchunk2Size);
     fread(wave,1,wave->dataChunk->subchunk2Size,fp);
 }
+
+int main(int argc, char *argv[]){
+    WAVE *wav=NULL;
+    wav=(WAVE*)malloc(sizeof(WAVE));
+    initialize(wav,)
+
+
+}
