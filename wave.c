@@ -37,6 +37,7 @@ void deallocWave(WAVE *wave){
 	free(wave->dataChunk);
 }
 
+#ifndef DEBUGGING
 #ifdef DEBUGWAVE
 #define DEBUGGING
 
@@ -56,5 +57,6 @@ int main(int argc, char *argv[]){
 
 
 }
+#endif
 #endif
     
