@@ -3,6 +3,7 @@
 #include "wave.h"
 
 void stereoToMono(char *input, char *output);
+void initializeMonoWave(WAVE *monoWave, WAVE *wave);
 
 
 #endif

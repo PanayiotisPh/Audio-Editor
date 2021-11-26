@@ -49,7 +49,9 @@ typedef struct wave
  DATA_CHUNK *dataChunk;
 }WAVE; 
 
-void initialize(WAVE *wave,char *fileName);
+void initialize(WAVE *wave);
+void initializeFromFile(WAVE *wave,char *fileName);
+
 // void readWave(WAVE *wave, FILE *fp);
 
 #endif

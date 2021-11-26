@@ -1,11 +1,18 @@
 #include "wave.h"
+
+void initialize(WAVE *wave){
+   	wave->dataChunk = (DATA_CHUNK*)malloc(sizeof(DATA_CHUNK));
+    wave->riffChunk = (RIFF_CHUNK*)malloc(sizeof(RIFF_CHUNK));
+	wave->fmtChunk = (FMT_CHUNK*)malloc(sizeof(FMT_CHUNK));
+
+}
 /**
  * @brief initializes a wave
  * 
  * @param wave allocate memory for wave before using the method
  * @param fp .wav file pointer
  */
-void initialize(WAVE *wave, char *fileName){
+void initializeFromFile(WAVE *wave, char *fileName){
     FILE *fp = NULL;
     fp = fopen(fileName, "rb");  
     if(fp==NULL){
