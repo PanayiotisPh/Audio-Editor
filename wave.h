@@ -43,7 +43,7 @@ typedef struct wave
 { 
  RIFF_CHUNK *riffChunk; 
  FMT_CHUNK *fmtChunk;
- DATA_CHUNK *dataChunk
+ DATA_CHUNK *dataChunk;
 }WAVE; 
 
 void initialize(WAVE *wave);
