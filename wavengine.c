@@ -12,8 +12,21 @@ int main(int argc, char *argv[]){
         printf("%s\n%s",GPL,usage);     
         return -1;
     }
+    int numOfValidFiles=0;
+    char **validFiles= getValidFiles(argv,&numOfValidFiles);
+    char *option= argv[1];
 
-    if(checkFileFormat)
+    if(strcmp(option,"-list")==0){
+        list(validFiles, numOfValidFiles);
+        return 0;
+    }
+
+    
+
+
+    
+
+
 
 }
 

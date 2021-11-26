@@ -2,7 +2,7 @@
 #define LISTH
 #include "wave.h"
 
-
+void list(char **files, int numOfFiles);
 
 
 
