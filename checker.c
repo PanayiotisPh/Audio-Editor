@@ -48,10 +48,10 @@ bool checkFileFormat(char *fileName){
  * @param argv 
  * @return char** 
  */
-char **getValidFiles(char *argv[]){
+char **getValidFiles(char *argv[],int numOfValidFiles){
     int i=2;
     int numOfFiles=0;
-    int numOfValidFiles=0;
+    numOfValidFiles=0;
     while(argv[i]!=NULL){
         numOfFiles++;
         i++;
