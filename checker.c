@@ -1,5 +1,4 @@
-#include "wave.h"
-#include<stdbool.h>
+#include "checker.h"
 
 /**
  * @brief checks if the option from the command line is valid 
@@ -10,7 +9,7 @@
  */
 bool checkOption(char *argv[]){
         if(strcmp(argv[1],"-list")!=0 || strcmp(argv[1],"-mono")!=0 || strcmp(argv[1],"-mix")!=0 || strcmp(argv[1],"-chop")!=0 
-        || strcmp(argv[1],"-reverse")!=0 || strcmp(argv[1],"-encodeText")!=0 || strcmp(argv[1],"decodeText")!=0 )
+        || strcmp(argv[1],"-reverse")!=0 || strcmp(argv[1],"-encodeText")!=0 || strcmp(argv[1],"-decodeText")!=0 )
             return false;
      return true;    
 }
