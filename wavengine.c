@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
         return -1;
     }
 
-    ///if(!checkAllFileFormats(argc-2, argv))
+    char **validFiles= getVa
 
 
 }
