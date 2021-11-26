@@ -19,10 +19,19 @@ void initialize(WAVE *wave, FILE *fp){
 
 }
 
-void readWave(WAVE *wave, FILE *fp){
-   
-    
+/**
+ * @brief deallocate memory of the wave
+ * 
+ * @param wave 
+ */
+void deallocWave(WAVE *wave){
+	free(wave->fmtChunk);
+    free(wave->riffChunk);
+    free(wave->dataChunk->data);
+	free(wave->dataChunk);
 }
+
+
 
 int main(int argc, char *argv[]){
     printf("%s %ld",argv[1],sizeof(byte));
