@@ -30,9 +30,10 @@ void reverseMono(WAVE *wave, char *inputFile){
     createReverseWave(reverseWave, inputFile);
     int i;
     int waveCounter = 0;
-    for(i=wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/8) ; i>0; i = i-(wave->fmtChunk->bitsPerSample/8)){
+    for(i=wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/8) ; i>=0; i = i-(wave->fmtChunk->bitsPerSample/8)){
         memcpy(&reverseWave->dataChunk->data[i], &wave->dataChunk->data[waveCounter], wave->fmtChunk->bitsPerSample/8);
         waveCounter = waveCounter + wave->fmtChunk->bitsPerSample/8;
+        printf("%d\t%d\n", i, waveCounter);
     }
     exportWave(inputFile, reverseWave,"reverse-");
     deallocWave(reverseWave);
