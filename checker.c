@@ -77,6 +77,10 @@ char **getValidFiles(char *argv[],int *numOfValidFiles){
 }
 
 bool checkTimings(char* fileName, int start, int end){
+    if(start>end){
+        printf("start time is bigger than end time\n");
+        return false;
+    }    
     WAVE *wave =(WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,fileName);
     int waveTime = (int) wave->dataChunk->subchunk2Size /(int) wave->fmtChunk->byteRate;
@@ -92,7 +96,13 @@ bool checkTimings(char* fileName, int start, int end){
     return true;        
     
 
-    printf("wave time is: %d\n",waveTime);
-    
+}
 
+bool isNumber(char* str){
+    for (int i = 0; str[i]!= '\0'; i++)
+    {
+        if (isdigit(str[i]) == 0)
+              return false;
+    }
+    return true;
 }
