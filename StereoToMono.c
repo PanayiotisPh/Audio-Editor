@@ -1,4 +1,5 @@
 #include "StereoToMono.h"
+#include "list.h"
 
 void stereoToMono(char *input, char *output){
     WAVE *wave=NULL;
@@ -16,7 +17,7 @@ void stereoToMono(char *input, char *output){
         fflush(stdout);
     }
    
-
+    
 
     char *outputFile = NULL;
     outputFile = (char*)malloc(sizeof(output)+5);
