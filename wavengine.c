@@ -44,10 +44,12 @@ int main(int argc, char *argv[]){
         int end = atoi(argv[4]);
         if(checkTimings(validFiles[0],start,end)){
             chop(validFiles,numOfValidFiles[0],start,end);
+            
         }else{
             printf("invalid timings given\n");
         }
-        
+        goto free;
+
 
 
 

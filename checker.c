@@ -86,8 +86,13 @@ bool checkTimings(char* fileName, int start, int end){
     int waveTime = (int) wave->dataChunk->subchunk2Size /(int) wave->fmtChunk->byteRate;
     if(start > waveTime || end > waveTime || start < 0|| end < 0 ){
             printf("timings given are not in range of wave file's length. wave's length is %d seconds\n",waveTime);
+            deallocWave(wave);
+            free(wave);
             return false;
     }
+
+    deallocWave(wave);
+    free(wave);
     return true;        
     
 
