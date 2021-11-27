@@ -29,7 +29,7 @@ void initializeFromFile(WAVE *wave, char *fileName){
 
     wave->dataChunk->data= (byte*) malloc(wave->dataChunk->subchunk2Size);
     fread(wave->dataChunk->data,wave->dataChunk->subchunk2Size,1,fp);
-
+    fclose(fp);
 }
 
 /**

@@ -51,7 +51,7 @@ typedef struct wave
 
 void initialize(WAVE *wave);
 void initializeFromFile(WAVE *wave,char *fileName);
-
+void deallocWave(WAVE *wave);
 // void readWave(WAVE *wave, FILE *fp);
 
 #endif

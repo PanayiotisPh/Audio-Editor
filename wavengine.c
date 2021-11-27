@@ -17,14 +17,16 @@ int main(int argc, char *argv[]){
     numOfValidFiles[0]=0;
     char **validFiles= getValidFiles(argv,numOfValidFiles);
     char *option= argv[1];
-    printf("eimai edw %d",numOfValidFiles[0]);
+
     if(strcmp(option,"-list")==0){
         list(validFiles, numOfValidFiles[0]);
-        return 0;
+        goto free;
     }
 
-    
-
+    free:
+        free(validFiles);    
+        free(numOfValidFiles);
+    return 0;
 
     
 
