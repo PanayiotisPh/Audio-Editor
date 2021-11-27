@@ -3,4 +3,4 @@
 
 bool checkOption(char *argv[]);
 bool checkFileFormat(char *fileName);
-char **getValidFiles(char *argv[], int numOfValidFiles);
+char **getValidFiles(char *argv[], int *numOfValidFiles);
