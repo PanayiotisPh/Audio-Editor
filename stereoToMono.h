@@ -3,7 +3,7 @@
 #include "wave.h"
 
 void stereoToMono(char **inputFiles, int numOfFiles);
-void convertToMono(WAVE *wave);
+void initializeToMono(WAVE *wave, char *inputFile);
 
 
 
