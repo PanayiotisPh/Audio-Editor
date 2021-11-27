@@ -2,7 +2,7 @@
 
 void reverseWave(char **inputFiles, int numOfFiles){
     printf("amin\n");
-    
+
     int i;
     WAVE *wave = NULL;
     for (i = 0; i < numOfFiles; i++){

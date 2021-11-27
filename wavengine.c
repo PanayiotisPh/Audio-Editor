@@ -57,7 +57,7 @@ int main(int argc, char *argv[]){
         
     }
     if(strcmp(option,"-reverse")==0){
-        reverseMono(validFiles,numOfValidFiles[0]);
+        reverseWave(validFiles,numOfValidFiles[0]);
         goto free;
     }
 
