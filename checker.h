@@ -2,6 +2,7 @@
 #define CHECKER
 #include "wave.h"
 #include <stdbool.h>
+#include <ctype.h>
 
 bool checkOption(char *argv[]);
 bool checkFileFormat(char *fileName);
