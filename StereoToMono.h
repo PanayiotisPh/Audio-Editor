@@ -4,7 +4,7 @@
 
 void stereoToMono(char **inputFiles, int numOfFiles);
 void createNewWave(char *input, WAVE *monoWave);
-void initializeMonoWave(WAVE *monoWave, WAVE *wave);
+void initializeMonoWave(WAVE *monoWave);
 
 
 

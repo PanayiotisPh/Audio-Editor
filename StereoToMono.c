@@ -1,8 +1,8 @@
 #include "StereoToMono.h"
 
 void stereoToMono(char **inputFiles, int numOfFiles){
+    
     WAVE *wave=NULL;
-
     WAVE *monoWave = NULL;
 
     int i,j;
@@ -21,7 +21,7 @@ void stereoToMono(char **inputFiles, int numOfFiles){
             continue;
         }
 
-        initializeMonoWave(monoWave, wave);
+        initializeMonoWave(monoWave);
 
         for (i=0;i<wave->dataChunk->subchunk2Size; i=i+ (wave->fmtChunk->bitsPerSample)/4){
             memcpy(&monoWave->dataChunk->data[insertCounter], &wave->dataChunk->data[i], wave->fmtChunk->bitsPerSample/8);
@@ -53,15 +53,16 @@ void createNewWave(char *input, WAVE *monoWave){
     
 }
 
-void initializeMonoWave(WAVE *monoWave, WAVE *wave){
+void initializeMonoWave(WAVE *monoWave){
+    int originalChannels = monoWave->fmtChunk->numChannels;
     monoWave->riffChunk->chunkSize = monoWave->riffChunk->chunkSize/2;
 
     monoWave->fmtChunk->numChannels = (word)1;                                      
     monoWave->fmtChunk->byteRate = monoWave->fmtChunk->byteRate/2;
     monoWave->fmtChunk->blockAlign = monoWave->fmtChunk->blockAlign/2;
 
-    int originalWaveSample = (monoWave->dataChunk->subchunk2Size) / ((wave->fmtChunk->numChannels) * (wave->fmtChunk->bitsPerSample / 8));
-    monoWave->dataChunk->subchunk2Size = (originalWaveSample) * (wave->fmtChunk->bitsPerSample / 8);
+    int originalWaveSample = (monoWave->dataChunk->subchunk2Size) / (originalChannels * (monoWave->fmtChunk->bitsPerSample / 8));
+    monoWave->dataChunk->subchunk2Size = (originalWaveSample) * (monoWave->fmtChunk->bitsPerSample / 8);
     monoWave->dataChunk->data = (byte *)malloc(monoWave->dataChunk->subchunk2Size * sizeof(byte));
 }
 
