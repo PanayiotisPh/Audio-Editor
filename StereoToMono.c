@@ -9,7 +9,6 @@ void stereoToMono(char **inputFiles, int numOfFiles){
     int insertCounter = 0;
 
     for(j=0;j<numOfFiles;j++){  
-            printf("%s\n",inputFiles[j]);
 
         wave=(WAVE*)malloc(sizeof(WAVE));
         monoWave = (WAVE*) malloc(sizeof(WAVE));
@@ -17,6 +16,10 @@ void stereoToMono(char **inputFiles, int numOfFiles){
         initializeFromFile(wave,inputFiles[j]);
 
         initializeFromFile(monoWave,inputFiles[j]);
+        if(wave->fmtChunk->numChannels == 1){
+            printf("%s has MONO sound. Cannot convert\n", inputFiles[j] );
+            continue;
+        }
 
         initializeMonoWave(monoWave, wave);
 
@@ -35,14 +38,12 @@ void stereoToMono(char **inputFiles, int numOfFiles){
 }
 
 void createNewWave(char *input, WAVE *monoWave){
-    char *outputFile = NULL;
-    printf("%s\n",input);
 
-    outputFile = (char*)malloc(sizeof(input)+49495);
+    char *outputFile = NULL;
+    outputFile = (char*)calloc(1,sizeof(input)+5);
     strcat(outputFile, "mono-");
     strcat(outputFile, input);
     FILE *outfp = fopen(outputFile,"w");
-    printf("%s\n",outputFile);
     fwrite(monoWave->riffChunk,sizeof(RIFF_CHUNK),1,outfp);
     fwrite(monoWave->fmtChunk,sizeof(FMT_CHUNK),1,outfp);
     fwrite(monoWave->dataChunk,sizeof(byte)*4+sizeof(dword),1,outfp);
@@ -62,8 +63,6 @@ void initializeMonoWave(WAVE *monoWave, WAVE *wave){
     int originalWaveSample = (monoWave->dataChunk->subchunk2Size) / ((wave->fmtChunk->numChannels) * (wave->fmtChunk->bitsPerSample / 8));
     monoWave->dataChunk->subchunk2Size = (originalWaveSample) * (wave->fmtChunk->bitsPerSample / 8);
     monoWave->dataChunk->data = (byte *)malloc(monoWave->dataChunk->subchunk2Size * sizeof(byte));
-    printf("outta\n");
-    fflush(stdout);
 }
 
 #ifndef DEBUGGING
