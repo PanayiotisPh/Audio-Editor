@@ -27,8 +27,8 @@ bool checkFileFormat(char *fileName){
         printf("invalid filename: it's too short\n");
         return false;
     }
-    char *fileExtension = fileName[len-4];    
-    if(strcmp(fileExtension,".wav")==0){
+    char *fileExtension = &fileName[len-4];    
+    if(strcmp(fileExtension,".wav")!=0){
         printf("invalid filename: it's not a .wav file\n");
         return false;
     }
@@ -43,15 +43,15 @@ bool checkFileFormat(char *fileName){
 }
 
 /**
- * @brief Gets the Valid Files from the argument line
+ * @brief checks and returns the Valid Files from the argument line
  * 
  * @param argv 
  * @return char** 
  */
-char **getValidFiles(char *argv[],int numOfValidFiles){
+char **getValidFiles(char *argv[],int *numOfValidFiles){
     int i=2;
     int numOfFiles=0;
-    numOfValidFiles=0;
+    numOfValidFiles[0]=0;
     while(argv[i]!=NULL){
         numOfFiles++;
         i++;
@@ -63,10 +63,12 @@ char **getValidFiles(char *argv[],int numOfValidFiles){
     for(i=0;i<numOfFiles;i++){
         char *fileName=argv[2+i];
         if(checkFileFormat(fileName)){
-            numOfValidFiles++;
-            validFiles[numOfValidFiles]=fileName;
+            validFiles[numOfValidFiles[0]]=fileName;
+            numOfValidFiles[0]++;
+
         }
             
     }
+    printf("ekei %d\n",numOfValidFiles[0]);
     return validFiles;
 }
