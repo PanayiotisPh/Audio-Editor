@@ -24,16 +24,17 @@ void reverseWave(char **inputFiles, int numOfFiles){
 
 // }
 void reverseMono(WAVE *wave, char *inputFile){
-    printf("am ine");
+    printf("am ine\n");
     WAVE *reverseWave =NULL;
     reverseWave = (WAVE*)malloc(sizeof(WAVE));
     createReverseWave(reverseWave, inputFile);
     int i;
     int waveCounter = 0;
+    printf("%d\t%d\n", wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/8), waveCounter);
+
     for(i=wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/8) ; i>=0; i = i-(wave->fmtChunk->bitsPerSample/8)){
         memcpy(&reverseWave->dataChunk->data[i], &wave->dataChunk->data[waveCounter], wave->fmtChunk->bitsPerSample/8);
         waveCounter = waveCounter + wave->fmtChunk->bitsPerSample/8;
-        printf("%d\t%d\n", i, waveCounter);
     }
     exportWave(inputFile, reverseWave,"reverse-");
     deallocWave(reverseWave);
