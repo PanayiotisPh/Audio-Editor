@@ -9,7 +9,7 @@ void mixWaves(char **inputFiles, int numOfFiles){
     int insertCounter = 0;
     if(numOfFiles != 2){
         printf("Can not make a mix with %d waves. Import 2 files\n", numOfFiles);
-        
+        return;
     }
 
     wave1=(WAVE*)malloc(sizeof(WAVE));
@@ -21,9 +21,15 @@ void mixWaves(char **inputFiles, int numOfFiles){
 
     if(wave1->fmtChunk->numChannels != 1 || wave2->fmtChunk->numChannels != 1){
         printf("Waves must be Stereo\n");
+        deallocWave(wave1);
+        deallocWave(wave2);
+        goto Free;
     }
     if(wave1->fmtChunk->bitsPerSample != wave2->fmtChunk->bitsPerSample){
         printf("Waves must have the same BitsPerSample\n");
+        deallocWave(wave1);
+        deallocWave(wave2);
+        goto Free;
     }
     createMixWave(wave2, inputFiles[0]);
 
@@ -53,7 +59,7 @@ void mixWaves(char **inputFiles, int numOfFiles){
         }
     }
     //exportwave1(inputFiles[j], wave2, "mono-");
-
+    Free:
     insertCounter = 0;
     deallocWave(wave1);
     deallocWave(wave2);
@@ -67,5 +73,6 @@ void createMixWave(WAVE *mixWave, char *inputFile){
 
     int originalWaveSample = (mixWave->dataChunk->subchunk2Size) / (mixWave->fmtChunk->numChannels * (mixWave->fmtChunk->bitsPerSample / 8));
     mixWave->dataChunk->subchunk2Size = (originalWaveSample) * (mixWave->fmtChunk->bitsPerSample / 8);
+    free(mixWave->dataChunk->data);
     mixWave->dataChunk->data = (byte *)malloc(mixWave->dataChunk->subchunk2Size * sizeof(byte));
 }
