@@ -14,7 +14,8 @@ void stereoToMono(char *input, char *output){
         memcpy(&monoWave->dataChunk->data[insertCounter], &wave->dataChunk->data[i], wave->fmtChunk->bitsPerSample/8);
         insertCounter = insertCounter+wave->fmtChunk->bitsPerSample/8;
     }
-   displayInfo(monoWave);
+    displayInfo(monoWave);
+    printf("\n\n");
     displayInfo(wave);
 
     
@@ -29,6 +30,7 @@ void stereoToMono(char *input, char *output){
     fwrite(wave->fmtChunk,sizeof(FMT_CHUNK),1,outfp);
     fwrite(wave->dataChunk,sizeof(byte)*4+sizeof(dword),1,outfp);
     fwrite(&wave->dataChunk->data ,wave->dataChunk->subchunk2Size,1,outfp);
+    fclose(outfp);
     
 }
 
@@ -39,7 +41,7 @@ void initializeMonoWave(WAVE *monoWave, WAVE *wave){
 
     strcpy((char *)monoWave->riffChunk->chunkId, (char *)wave->riffChunk->chunkId);
     monoWave->riffChunk->chunkSize = wave->riffChunk->chunkSize/2;
-    strcpy((char *)wave->riffChunk->format, (char *)monoWave->riffChunk->format);
+    strcpy((char *)monoWave->riffChunk->format, (char *)wave->riffChunk->format);
 
     //Copy FMT SUB-CHUNK
     strcpy((char *)monoWave->fmtChunk->subchunk1Id, (char *)wave->fmtChunk->subchunk1Id);
@@ -48,8 +50,8 @@ void initializeMonoWave(WAVE *monoWave, WAVE *wave){
     monoWave->fmtChunk->numChannels = (word)1;                                      
     monoWave->fmtChunk->sampleRate = wave->fmtChunk->sampleRate;
     monoWave->fmtChunk->bitsPerSample = wave->fmtChunk->bitsPerSample;
-    monoWave->fmtChunk->byteRate = (wave->fmtChunk->sampleRate) * 1 * (wave->fmtChunk->bitsPerSample / 8);
-    monoWave->fmtChunk->blockAlign = 1 * (wave->fmtChunk->bitsPerSample / 8);
+    monoWave->fmtChunk->byteRate = wave->fmtChunk->byteRate;
+    monoWave->fmtChunk->blockAlign = wave->fmtChunk->blockAlign/2;
 
     //Copy DATA SUB-CHUNK  CHANGE LATER ASAP
     strcpy((char *)monoWave->dataChunk->subchunk2Id, (char *)wave->dataChunk->subchunk2Id);
