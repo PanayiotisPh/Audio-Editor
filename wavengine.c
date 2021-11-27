@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
         if(checkTimings(validFiles[0],start,end)){
             chop(validFiles,numOfValidFiles[0],start,end);
         }else{
-            printf("invalid timings given");
+            printf("invalid timings given\n");
         }
         
 

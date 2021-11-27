@@ -77,14 +77,17 @@ char **getValidFiles(char *argv[],int *numOfValidFiles){
 }
 
 bool checkTimings(char* fileName, int start, int end){
-    if(start>end)
+    if(start>end){
+        printf("start time is bigger than end time\n");
         return false;
+    }    
     WAVE *wave =(WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,fileName);
     int waveTime = (int) wave->dataChunk->subchunk2Size /(int) wave->fmtChunk->byteRate;
-    printf("wave time is: %d\n",waveTime);
-    if(start > waveTime || end > waveTime || start < 0|| end < 0 )
+    if(start > waveTime || end > waveTime || start < 0|| end < 0 ){
+            printf("timings given are not in range of wave file's length. wave's length is %d seconds\n",waveTime);
             return false;
+    }
     return true;        
     
 
