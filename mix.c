@@ -58,7 +58,8 @@ void mixWaves(char **inputFiles, int numOfFiles){
             continue;
         }
     }
-    //exportwave1(inputFiles[j], wave2, "mono-");
+    char *outputfile = malloc(sizeof(in))
+    exportwave1(inputFiles[2], wave2, "mono-");
     Free:
     insertCounter = 0;
     deallocWave(wave1);
