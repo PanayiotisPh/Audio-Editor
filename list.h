@@ -1,5 +1,5 @@
-#ifndef LISTH
-#define LISTH
+#ifndef LIST
+#define LIST
 #include "wave.h"
 
 void list(char **files, int numOfFiles);
