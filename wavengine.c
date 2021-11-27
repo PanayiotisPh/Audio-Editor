@@ -42,6 +42,8 @@ int main(int argc, char *argv[]){
         
         int start = atoi(argv[3]);
         int end = atoi(argv[4]);
+        printf("start %d end %d\n\n",start,end);
+
         if(checkTimings(validFiles[0],start,end)){
             chop(validFiles,numOfValidFiles[0],start,end);
             

@@ -84,6 +84,8 @@ bool checkTimings(char* fileName, int start, int end){
     WAVE *wave =(WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,fileName);
     int waveTime = (int) wave->dataChunk->subchunk2Size /(int) wave->fmtChunk->byteRate;
+    printf("start %d end %d time %d",start,end,waveTime);
+    fflush(stdout);
     if(start > waveTime || end > waveTime || start < 0|| end < 0 ){
             printf("timings given are not in range of wave file's length. wave's length is %d seconds\n",waveTime);
             deallocWave(wave);
