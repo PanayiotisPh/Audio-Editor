@@ -7,6 +7,7 @@ void chop(char **files, int numOfFiles, int start, int end){
         WAVE *chopWave = (WAVE*) malloc(sizeof(WAVE));
         initializeFromFile(origWave,files[i]);
         initializeFromFile(chopWave,files[i]);
+        
         int startChunk= start*origWave->fmtChunk->byteRate;
         int endChunk= end*origWave->fmtChunk->byteRate;
         int chunkPointer;
