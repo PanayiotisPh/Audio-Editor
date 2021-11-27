@@ -34,12 +34,18 @@ int main(int argc, char *argv[]){
         goto free;
     }
     if(strcmp(option,"-chop")==0){
-        if(numOfValidFiles[0]!=1){
-            printf("invalid arguments, please enter only 1 valid .wav file\n");
+        if(numOfValidFiles[0]!=1 || !isNumber(argv[3]) || !isNumber(argv[4]) ){
+            printf("invalid arguments, please enter only 1 valid .wav file and 2 integers for the seconds' margin\n");
             goto free;
         }
-        if(checkTimings(validFiles[0],argv[3],argv[4])){
-            chop(validFiles,numOfValidFiles,argv[3],argv[4]);
+
+        
+        int start = atoi(argv[3]);
+        int end = atoi(argv[4]);
+        if(checkTimings(validFiles[0],start,end)){
+            chop(validFiles,numOfValidFiles[0],start,end);
+        }else{
+            printf("invalid timings given\n");
         }
         
 
