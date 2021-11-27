@@ -69,7 +69,7 @@ void mixWaves(char **inputFiles, int numOfFiles){
     strcat(outputfile,inputFiles[0]);
     strcat(outputfile,"-");
     exportWave(inputFiles[1], mixWaves, outputfile);
-    
+
     Free:
     deallocWave(wave1);
     deallocWave(wave2);
@@ -83,3 +83,13 @@ void createMixWave(WAVE *mixWave, char *inputFile){
     free(mixWave->dataChunk->data);
     mixWave->dataChunk->data = (byte *)malloc(mixWave->dataChunk->subchunk2Size * sizeof(byte));
 }
+
+#ifndef DEBUGGING
+#ifdef DEBUGWAVE
+#define DEBUGGING
+
+int main(int argc, char *argv[]){
+
+}
+#endif
+#endif
