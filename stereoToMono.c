@@ -42,7 +42,7 @@ void stereoToMono(char **inputFiles, int numOfFiles){
 void initializeToMono(WAVE *wave, char *inputFile){
     
     initializeFromFile(wave,inputFile);
-    wave->riffChunk->chunkSize = wave->riffChunk->chunkSize/2;
+    wave->riffChunk->chunkSize = wave->riffChunk->chunkSize - wave->dataChunk->subchunk2Size/2;
 
     wave->fmtChunk->numChannels = (word)1;                                      
     wave->fmtChunk->byteRate = wave->fmtChunk->byteRate/2;

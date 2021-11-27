@@ -9,6 +9,7 @@ void mixWaves(char **inputFiles, int numOfFiles){
     int insertCounter = 0;
     if(numOfFiles != 2){
         printf("Can not make a mix with %d waves. Import 2 files\n", numOfFiles);
+        
     }
 
     wave1=(WAVE*)malloc(sizeof(WAVE));
