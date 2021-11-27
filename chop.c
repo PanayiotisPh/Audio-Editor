@@ -8,15 +8,17 @@ void chop(char **files, int numOfFiles, int start, int end){
         initializeFromFile(origWave,files[i]);
         initializeFromFile(chopWave,files[i]);
         free(chopWave->dataChunk->data);
-        chopWave->dataChunk->data = (byte *)malloc( (end-start) * sizeof(byte));
 
         int startChunk= start*origWave->fmtChunk->byteRate;
         int endChunk= end*origWave->fmtChunk->byteRate;
+        chopWave->dataChunk->data = (byte *)malloc( (endChunk-startChunk) * sizeof(byte));
+        chopWave->dataChunk->subchunk2Size= endChunk-startChunk;
+        
         // int chunkPointer;
         // for(chunkPointer=startChunk ; chunkPointer<endChunk ; chunkPointer+= origWave->fmtChunk->sampleRate/8  ){
             
         // }
-        memcpy(chopWave->dataChunk->data,origWave->dataChunk->data[start],end-start);
+        memcpy(&chopWave->dataChunk->data[0], &origWave->dataChunk->data[startChunk], endChunk-startChunk);
 
         exportWave(files[i],chopWave,"chopped-");
         
