@@ -47,7 +47,7 @@ void deallocWave(WAVE *wave){
 void exportWave(char *input, WAVE *wave, char *prefix){
 
     char *outputFile = NULL;
-    outputFile = (char*)calloc(1,strlen(input)+strlen(prefix));
+    outputFile = (char*)calloc(1,strlen(input)+strlen(prefix)+1);
     strcat(outputFile, prefix);
     strcat(outputFile, input);
     FILE *outfp = fopen(outputFile,"wb");
