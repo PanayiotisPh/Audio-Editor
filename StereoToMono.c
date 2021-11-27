@@ -4,7 +4,7 @@
 void stereoToMono(char *input, char *output){
     WAVE *wave=NULL;
     wave=(WAVE*)malloc(sizeof(WAVE));
-    initializeFromFile(wave,input);
+    initializeFromFile(wave,input); displayInfo(wave);
     int i;
     int insertCounter = 0;
     WAVE *monoWave = NULL;

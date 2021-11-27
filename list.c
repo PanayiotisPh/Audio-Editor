@@ -2,14 +2,17 @@
 
 void list(char **files, int numOfFiles){
     int i;
+    WAVE *tempWave=malloc(sizeof(WAVE));
+
     printf("\n");
     for(i=0; i< numOfFiles;i++){
-        WAVE *tempWave=malloc(sizeof(WAVE));
         initializeFromFile(tempWave,files[i]);
         displayInfo(tempWave);
         if(i<numOfFiles-1)
         printf("\n*********************************************\n");
+        deallocWave(tempWave);
     }
+    free(tempWave);
     
     
 }

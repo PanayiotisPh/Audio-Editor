@@ -37,8 +37,12 @@ bool checkFileFormat(char *fileName){
     initializeFromFile(wave,fileName);   
     if(wave->fmtChunk->audioFormat!=1){
         printf("invalid filename: it's not PCM\n");
+        deallocWave(wave);
+        free(wave);
         return false; 
     }
+    deallocWave(wave);
+    free(wave);
     return true;    
 }
 
@@ -66,9 +70,8 @@ char **getValidFiles(char *argv[],int *numOfValidFiles){
             validFiles[numOfValidFiles[0]]=fileName;
             numOfValidFiles[0]++;
 
-        }
-            
+        }           
     }
-    printf("ekei %d\n",numOfValidFiles[0]);
+
     return validFiles;
 }

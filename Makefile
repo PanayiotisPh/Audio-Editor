@@ -5,7 +5,7 @@
 # 'make all' build project + manual
 # 'make clean' removes all .o, executable and doxy log
 ###############################################
-PROJ = as3 # the name of the project
+PROJ = waveMade# the name of the project
 CC = gcc # name of compiler
 DOXYGEN = doxygen # name of doxygen binary
 # define any compile-time flags
@@ -21,7 +21,7 @@ OBJS := $(patsubst %.c, %.o, $(C_FILES))
 # To create the executable file we need the individual
 # object files
 $(PROJ): $(OBJS)
-	$(CC)  -o $(PROJ) $(OBJS) 
+	$(CC)  -g -o $(PROJ) $(OBJS) 
 	#$(LFLAGS)
 # To create each individual object file we need to
 # compile these files using the following general
