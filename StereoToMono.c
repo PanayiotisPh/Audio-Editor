@@ -21,13 +21,13 @@ void stereoToMono(char **inputFiles, int numOfFiles){
             continue;
         }
 
-        initializeMonoWave(monoWave);
+        convertToMono(monoWave);
 
         for (i=0;i<wave->dataChunk->subchunk2Size; i=i+ (wave->fmtChunk->bitsPerSample)/4){
             memcpy(&monoWave->dataChunk->data[insertCounter], &wave->dataChunk->data[i], wave->fmtChunk->bitsPerSample/8);
             insertCounter = insertCounter+wave->fmtChunk->bitsPerSample/8;
         }
-        createNewWave(inputFiles[j], monoWave);
+        exportWave(inputFiles[j], monoWave, "mono-");
 
         insertCounter = 0;
         deallocWave(wave);
@@ -37,33 +37,19 @@ void stereoToMono(char **inputFiles, int numOfFiles){
     }
 }
 
-void createNewWave(char *input, WAVE *monoWave){
 
-    char *outputFile = NULL;
-    outputFile = (char*)calloc(1,sizeof(input)+5);
-    strcat(outputFile, "mono-");
-    strcat(outputFile, input);
-    FILE *outfp = fopen(outputFile,"w");
-    fwrite(monoWave->riffChunk,sizeof(RIFF_CHUNK),1,outfp);
-    fwrite(monoWave->fmtChunk,sizeof(FMT_CHUNK),1,outfp);
-    fwrite(monoWave->dataChunk,sizeof(byte)*4+sizeof(dword),1,outfp);
-    fwrite(monoWave->dataChunk->data ,monoWave->dataChunk->subchunk2Size,1,outfp);
-    free(outputFile);
-    fclose(outfp);
-    
-}
 
-void initializeMonoWave(WAVE *monoWave){
-    int originalChannels = monoWave->fmtChunk->numChannels;
-    monoWave->riffChunk->chunkSize = monoWave->riffChunk->chunkSize/2;
+void convertToMono(WAVE *wave){
+    int originalChannels = wave->fmtChunk->numChannels;
+    wave->riffChunk->chunkSize = wave->riffChunk->chunkSize/2;
 
-    monoWave->fmtChunk->numChannels = (word)1;                                      
-    monoWave->fmtChunk->byteRate = monoWave->fmtChunk->byteRate/2;
-    monoWave->fmtChunk->blockAlign = monoWave->fmtChunk->blockAlign/2;
+    wave->fmtChunk->numChannels = (word)1;                                      
+    wave->fmtChunk->byteRate = wave->fmtChunk->byteRate/2;
+    wave->fmtChunk->blockAlign = wave->fmtChunk->blockAlign/2;
 
-    int originalWaveSample = (monoWave->dataChunk->subchunk2Size) / (originalChannels * (monoWave->fmtChunk->bitsPerSample / 8));
-    monoWave->dataChunk->subchunk2Size = (originalWaveSample) * (monoWave->fmtChunk->bitsPerSample / 8);
-    monoWave->dataChunk->data = (byte *)malloc(monoWave->dataChunk->subchunk2Size * sizeof(byte));
+    int originalWaveSample = (wave->dataChunk->subchunk2Size) / (originalChannels * (wave->fmtChunk->bitsPerSample / 8));
+    wave->dataChunk->subchunk2Size = (originalWaveSample) * (wave->fmtChunk->bitsPerSample / 8);
+    wave->dataChunk->data = (byte *)malloc(wave->dataChunk->subchunk2Size * sizeof(byte));
 }
 
 #ifndef DEBUGGING

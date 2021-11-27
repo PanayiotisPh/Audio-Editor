@@ -44,6 +44,22 @@ void deallocWave(WAVE *wave){
 	free(wave->dataChunk);
 }
 
+void exportWave(char *input, WAVE *wave, char *prefix){
+
+    char *outputFile = NULL;
+    outputFile = (char*)calloc(1,sizeof(input)+5);
+    strcat(outputFile, prefix);
+    strcat(outputFile, input);
+    FILE *outfp = fopen(outputFile,"w");
+    fwrite(wave->riffChunk,sizeof(RIFF_CHUNK),1,outfp);
+    fwrite(wave->fmtChunk,sizeof(FMT_CHUNK),1,outfp);
+    fwrite(wave->dataChunk,sizeof(byte)*4+sizeof(dword),1,outfp);
+    fwrite(wave->dataChunk->data ,wave->dataChunk->subchunk2Size,1,outfp);
+    free(outputFile);
+    fclose(outfp);
+    
+}
+
 #ifndef DEBUGGING
 #ifdef DEBUGWAVE
 #define DEBUGGING
