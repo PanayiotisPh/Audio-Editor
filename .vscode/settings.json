@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "stereotomono.h": "c"
+        "stereotomono.h": "c",
+        "list.h": "c",
+        "wave.h": "c"
     }
 }
