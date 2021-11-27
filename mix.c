@@ -69,6 +69,7 @@ void mixWaves(char **inputFiles, int numOfFiles){
     strcat(outputfile,inputFiles[0]);
     strcat(outputfile,"-");
     exportWave(inputFiles[1], mixWaves, outputfile);
+    
     Free:
     deallocWave(wave1);
     deallocWave(wave2);
