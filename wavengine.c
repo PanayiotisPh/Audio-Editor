@@ -2,6 +2,7 @@
 #include "list.h"
 #include "checker.h"
 #include "stereoToMono.h"
+#include "chop.h"
 #include "mix.h"
 
 #ifndef DEBUGGING
@@ -33,7 +34,18 @@ int main(int argc, char *argv[]){
         goto free;
     }
     if(strcmp(option,"-chop")==0){
-        goto free;
+        if(numOfValidFiles[0]!=1){
+            printf("invalid arguments, please enter only 1 valid .wav file\n");
+            goto free;
+        }
+        if(checkTimings(validFiles[0],argv[3],argv[4])){
+            chop(validFiles,numOfValidFiles,argv[3],argv[4]);
+        }
+        
+
+
+
+        
     }
 
     free:

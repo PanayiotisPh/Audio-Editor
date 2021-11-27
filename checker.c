@@ -24,7 +24,7 @@ bool checkOption(char *argv[]){
 bool checkFileFormat(char *fileName){
     int len = strlen(fileName);
     if(len<4){
-        printf("invalid filename: it's too short\n");
+        //printf("invalid filename: it's too short\n");
         return false;
     }
     char *fileExtension = &fileName[len-4];    
@@ -74,4 +74,14 @@ char **getValidFiles(char *argv[],int *numOfValidFiles){
     }
 
     return validFiles;
+}
+
+bool checkTimings(char* fileName, int start, int end){
+    WAVE *wave =(WAVE*) malloc(sizeof(WAVE));
+    initializeFromFile(wave,fileName);
+    int waveTime = (int) wave->dataChunk->subchunk2Size /(int) wave->fmtChunk->byteRate;
+
+    printf("wave time is: %d\n",waveTime);
+    
+
 }
