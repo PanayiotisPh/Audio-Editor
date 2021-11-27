@@ -13,10 +13,10 @@ void stereoToMono(char *input, char *output){
     for (i=0;i<wave->dataChunk->subchunk2Size; i=i+ (wave->fmtChunk->bitsPerSample)/4){
         memcpy(&monoWave->dataChunk->data[insertCounter], &wave->dataChunk->data[i], wave->fmtChunk->bitsPerSample/8);
         insertCounter = insertCounter+wave->fmtChunk->bitsPerSample/8;
-        printf("i = %d\tinsetCounter = %d\n", i,insertCounter);
-        fflush(stdout);
     }
-   
+   displayInfo(monoWave);
+    displayInfo(wave);
+
     
 
     char *outputFile = NULL;
