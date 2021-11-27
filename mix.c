@@ -6,7 +6,6 @@ void mixWaves(char **inputFiles, int numOfFiles){
     WAVE *mixWaves = NULL;
 
     int i;
-    int insertCounter = 0;
     if(numOfFiles != 2){
         printf("Can not make a mix with %d waves. Import 2 files\n", numOfFiles);
         return;
@@ -19,7 +18,7 @@ void mixWaves(char **inputFiles, int numOfFiles){
     initializeFromFile(wave1,inputFiles[0]);
     initializeFromFile(wave2,inputFiles[1]);
 
-    if(wave1->fmtChunk->numChannels != 1 || wave2->fmtChunk->numChannels != 1){
+    if(wave1->fmtChunk->numChannels != 2 || wave2->fmtChunk->numChannels != 2){
         printf("Waves must be Stereo\n");
         deallocWave(wave1);
         deallocWave(wave2);
@@ -31,37 +30,46 @@ void mixWaves(char **inputFiles, int numOfFiles){
         deallocWave(wave2);
         goto Free;
     }
-    createMixWave(wave2, inputFiles[0]);
 
     int smallerChunkSize;
 
     if(wave1->dataChunk->subchunk2Size < wave2->dataChunk->subchunk2Size){
         smallerChunkSize = wave1->dataChunk->subchunk2Size;
+        createMixWave(mixWaves, inputFiles[0]);
+
     }
     else{
         smallerChunkSize = wave2->dataChunk->subchunk2Size;
+        createMixWave(mixWaves, inputFiles[1]);
     }
 
     bool switchChannel = true;
+    int insertCounterWave1 = wave1->fmtChunk->bitsPerSample/8;
+    int insertCounterWave2 = 0;
+
+
 
     for (i=0;i<smallerChunkSize; i=i+ (wave1->fmtChunk->bitsPerSample)/8){
         if(switchChannel){
-            memcpy(&mixWaves->dataChunk->data[insertCounter], &wave2->dataChunk->data[2*i-1], wave2->fmtChunk->bitsPerSample/8);
-            insertCounter = insertCounter+wave1->fmtChunk->bitsPerSample/8;
+            memcpy(&mixWaves->dataChunk->data[i], &wave2->dataChunk->data[insertCounterWave2], wave2->fmtChunk->bitsPerSample/8);
+            insertCounterWave2 = insertCounterWave2 + wave2->fmtChunk->bitsPerSample/4;
             switchChannel = false;
             continue;
         }
         else if(!switchChannel){
-            memcpy(&mixWaves->dataChunk->data[insertCounter], &wave1->dataChunk->data[2*i], wave1->fmtChunk->bitsPerSample/8);
-            insertCounter = insertCounter+wave1->fmtChunk->bitsPerSample/8;
+            memcpy(&mixWaves->dataChunk->data[i], &wave1->dataChunk->data[insertCounterWave1], wave1->fmtChunk->bitsPerSample/8);
+            insertCounterWave1 = insertCounterWave1 + wave1->fmtChunk->bitsPerSample/4;
             switchChannel = true;
             continue;
         }
     }
-    char *outputfile = malloc(sizeof(in))
-    exportwave1(inputFiles[2], wave2, "mono-");
+
+    char *outputfile = calloc(strlen(inputFiles[0]) + 6,1);
+    strcat(outputfile,"mix-");
+    strcat(outputfile,inputFiles[0]);
+    strcat(outputfile,"-");
+    exportWave(inputFiles[1], mixWaves, outputfile);
     Free:
-    insertCounter = 0;
     deallocWave(wave1);
     deallocWave(wave2);
     wave1 = NULL;
@@ -71,9 +79,6 @@ void mixWaves(char **inputFiles, int numOfFiles){
 
 void createMixWave(WAVE *mixWave, char *inputFile){
     initializeFromFile(mixWave, inputFile);
-
-    int originalWaveSample = (mixWave->dataChunk->subchunk2Size) / (mixWave->fmtChunk->numChannels * (mixWave->fmtChunk->bitsPerSample / 8));
-    mixWave->dataChunk->subchunk2Size = (originalWaveSample) * (mixWave->fmtChunk->bitsPerSample / 8);
     free(mixWave->dataChunk->data);
     mixWave->dataChunk->data = (byte *)malloc(mixWave->dataChunk->subchunk2Size * sizeof(byte));
 }
