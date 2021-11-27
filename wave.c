@@ -50,7 +50,7 @@ void exportWave(char *input, WAVE *wave, char *prefix){
     outputFile = (char*)calloc(1,sizeof(input)+sizeof(prefix));
     strcat(outputFile, prefix);
     strcat(outputFile, input);
-    FILE *outfp = fopen(outputFile,"w");
+    FILE *outfp = fopen(outputFile,"wb");
     fwrite(wave->riffChunk,sizeof(RIFF_CHUNK),1,outfp);
     fwrite(wave->fmtChunk,sizeof(FMT_CHUNK),1,outfp);
     fwrite(wave->dataChunk,sizeof(byte)*4+sizeof(dword),1,outfp);
