@@ -55,9 +55,8 @@ void exportWave(char *input, WAVE *wave, char *prefix){
     fwrite(wave->fmtChunk,sizeof(FMT_CHUNK),1,outfp);
     fwrite(wave->dataChunk,sizeof(byte)*4+sizeof(dword),1,outfp);
     fwrite(wave->dataChunk->data ,wave->dataChunk->subchunk2Size,1,outfp);
-    free(outputFile);
     fclose(outfp);
-    
+    free(outputFile);
 }
 
 #ifndef DEBUGGING
