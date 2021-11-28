@@ -12,4 +12,5 @@ char **getValidFiles(char *argv[], int *numOfValidFiles);
 bool checkTimings(char* fileName, int start, int end);
 bool isTextFile(char *fileName);
 bool txtFitsWav(char *wavFileName, char *txtFileName);
+bool isNumber(char* str);
 #endif
