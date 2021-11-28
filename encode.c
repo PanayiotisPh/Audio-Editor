@@ -22,6 +22,6 @@ int *createPermutationFunction(int N, unsigned int systemkey){
 
 }
 
-int main(int argc, char *argv[]){
-    encode(argv[1],argv[2]);
-}
+// int main(int argc, char *argv[]){
+//     encode(argv[1],argv[2]);
+// }
