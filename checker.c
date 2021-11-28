@@ -139,6 +139,7 @@ bool isTextFile(char *fileName){
         printf("invalid file \"%s\": file extension is not .txt\n",fileName);
         return false;
     }
+    return true;
 }
 
 bool txtFitsWav(char *wavFileName, char *txtFileName){
