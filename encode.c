@@ -1,18 +1,16 @@
 #include "encode.h"
 
 void encode(char *waveFile, char *textFile){
-    FILE *fp =NULL;
+    char *text = (char*)calloc(sizeof(char),1);
+    FILE *fp;
     fp = fopen(textFile, "r");
-    int size;       //used to store file size
-    int row, column; //counts the row and columns of table
-    fseek (fp, 0, SEEK_END);
-    size = ftell(fp);       //count file size
-    rewind(fp);     //restore the file pointer to the begining of it
-    char *text = malloc(size);
-    for (i = 0;i)
-
-
-
+    int i=0;
+    while(!foef(fp)){
+        fscanf(fp,"%c", &text[i]);
+        i++;
+        text = (char*)realloc(text, i);
+    }
+    printf("%s\n", text);
 
 }
 int getBit(char *m, int n){
@@ -22,4 +20,8 @@ int getBit(char *m, int n){
 int *createPermutationFunction(int N, unsigned int systemkey){
 
 
+}
+
+int main(int argc, char *argv[]){
+    encode(argv[1],argv[2]);
 }
