@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 hello WOld
-=======
-hello
->>>>>>> 1bcd1180b087efa72959f28344fb2a9f7d10fdfc
