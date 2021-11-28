@@ -13,7 +13,7 @@ void decode(char *waveFile, char *textFile){
         i++;
         text = (char*)realloc(text, i);
     }
-    printf("%d\n", strlen(text));
+    printf("%ld\n", strlen(text));
     for(i=0;i<strlen(text)*8;i++){
         printf("%d",getBit(text,i));
     }
@@ -21,3 +21,4 @@ void decode(char *waveFile, char *textFile){
     int *permutation;
     permutation=createPermutationFunction(wave->dataChunk->subchunk2Size/8, KEY);
 
+}
