@@ -32,6 +32,8 @@ bool isValidWaveFile(char *fileName){
     }
     char *fileExtension = &fileName[len-4];    
     if(strcmp(fileExtension,".wav")!=0){
+        if(strcmp(fileExtension,".txt")==0)
+            return false;
         printf("invalid filename \"%s\": it's not a .wav file\n",fileName);
         return false;
     }
