@@ -21,7 +21,10 @@ int main(int argc, char *argv[]){
     numOfValidFiles[0]=0;
     char **validFiles= getValidFiles(argv,numOfValidFiles);
     char *option= argv[1];
-
+    if(validFiles[0]==NULL){
+        printf("no valid wave files given\n");
+        goto free;
+    }    
     if(strcmp(option,"-list")==0){
         list(validFiles, numOfValidFiles[0]);
         goto free;
@@ -64,8 +67,10 @@ int main(int argc, char *argv[]){
     if(strcmp(option,"-encodeText")){
         if(!isTextFile(argv[3]))
             goto free;
-
+        if(!txtFitsWav(validFiles[0],argv[3]))
+            goto free;    
         encode(validFiles[0],argv[3]);
+        
     }
 
     free:
