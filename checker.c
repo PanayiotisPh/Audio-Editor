@@ -36,11 +36,21 @@ bool checkFileFormat(char *fileName){
     wave= (WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,fileName);   
     if(wave->fmtChunk->audioFormat!=1){
-        printf("invalid filename: it's not PCM\n");
+        printf("invalid file: it's not PCM\n");
         deallocWave(wave);
         free(wave);
         return false; 
     }
+
+    if(wave->fmtChunk->numChannels > 2){
+        printf("invalid file: file has more than 2 channels\n");
+        deallocWave(wave);
+        free(wave);
+        return false; 
+
+    }
+
+
     deallocWave(wave);
     free(wave);
     return true;    
