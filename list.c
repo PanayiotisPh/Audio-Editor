@@ -40,3 +40,15 @@ void displayInfo(WAVE *wave){
     printf("subChunk2ID: %.4s\n",wave->dataChunk->subchunk2Id);
     printf("subChunk2Size: %d\n",(int) wave->dataChunk->subchunk2Size);
 }
+
+
+#ifndef DEBUGGING
+#ifdef DEBUGLIST
+#define DEBUGGING
+
+int main(int argc, char *argv[]){
+    //ADD CODE HERE
+}
+
+#endif
+#endif

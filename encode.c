@@ -30,6 +30,14 @@ int *createPermutationFunction(int N, unsigned int systemkey){
 
 }
 
+
+#ifndef DEBUGGING
+#ifdef DEBUGENCODE
+#define DEBUGGING
+
 int main(int argc, char *argv[]){
-    encode(argv[1],argv[2]);
+    //ADD CODE HERE
 }
+
+#endif
+#endif

@@ -56,3 +56,15 @@ void createReverseWave(WAVE *reverseWave, char *inputFile){
     free(reverseWave->dataChunk->data);
     reverseWave->dataChunk->data = (byte *)malloc(reverseWave->dataChunk->subchunk2Size * sizeof(byte));
 }
+
+
+#ifndef DEBUGGING
+#ifdef DEBUGREVERSE
+#define DEBUGGING
+
+int main(int argc, char *argv[]){
+    //ADD CODE HERE
+}
+
+#endif
+#endif

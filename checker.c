@@ -161,3 +161,17 @@ bool txtFitsWav(char *wavFileName, char *txtFileName){
 
     return true;
 }
+
+
+
+
+#ifndef DEBUGGING
+#ifdef DEBUGCHECKER
+#define DEBUGGING
+
+int main(int argc, char *argv[]){
+    //ADD CODE HERE
+}
+
+#endif
+#endif
