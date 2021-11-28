@@ -11,10 +11,12 @@ void encode(char *waveFile, char *textFile){
         i++;
         text = (char*)realloc(text, i);
     }
-    printf("%s\n", text);
+    printf("%d\n", strlen(text));
     for(i=0;i<strlen(text)*8;i++){
         printf("%d",getBit(text,i));
     }
+
+    createPermutationFunction(i-1, 5);
 
 }
 int getBit(char *m, int n){
@@ -26,7 +28,7 @@ int getBit(char *m, int n){
 }
 
 int *createPermutationFunction(int N, unsigned int systemkey){
-
+    
 
 }
 
