@@ -21,35 +21,37 @@ bool checkOption(char *argv[]){
  * @return true 
  * @return false 
  */
-bool checkFileFormat(char *fileName){
+bool isValidWaveFile(char *fileName){
+    if(isNumber(fileName))
+        return false;
+
     int len = strlen(fileName);
     if(len<4){
-        //printf("invalid filename: it's too short\n");
+        printf("invalid filename \"%s\": it's too short\n",fileName);
         return false;
     }
     char *fileExtension = &fileName[len-4];    
     if(strcmp(fileExtension,".wav")!=0){
-        printf("invalid filename: it's not a .wav file\n");
+        printf("invalid filename \"%s\": it's not a .wav file\n",fileName);
         return false;
     }
     WAVE *wave = NULL;
     wave= (WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,fileName);   
     if(wave->fmtChunk->audioFormat!=1){
-        printf("invalid file: it's not PCM\n");
+        printf("invalid file \"%s\": it seems to be compressed (PCM != 1)\n",fileName);
         deallocWave(wave);
         free(wave);
         return false; 
     }
 
     if(wave->fmtChunk->numChannels > 2){
-        printf("invalid file: file has more than 2 channels\n");
+        printf("invalid file \"%s\": file has more than 2 channels\n",fileName);
         deallocWave(wave);
         free(wave);
         return false; 
 
     }
-
 
     deallocWave(wave);
     free(wave);
@@ -76,7 +78,7 @@ char **getValidFiles(char *argv[],int *numOfValidFiles){
 
     for(i=0;i<numOfFiles;i++){
         char *fileName=argv[2+i];
-        if(checkFileFormat(fileName)){
+        if(isValidWaveFile(fileName)){
             validFiles[numOfValidFiles[0]]=fileName;
             numOfValidFiles[0]++;
 
@@ -95,7 +97,7 @@ bool checkTimings(char* fileName, int start, int end){
     initializeFromFile(wave,fileName);
     int waveTime = (int) wave->dataChunk->subchunk2Size /(int) wave->fmtChunk->byteRate;
     if(start > waveTime || end > waveTime || start < 0|| end < 0 ){
-            printf("timings given are not in range of wave file's length. wave's length is %d seconds\n",waveTime);
+            printf("timings given are not in range of wave file's length, wave's length is %d seconds\n",waveTime);
             deallocWave(wave);
             free(wave);
             return false;
@@ -115,4 +117,30 @@ bool isNumber(char* str){
               return false;
     }
     return true;
+}
+
+bool isTextFile(char *fileName){
+    if(isNumber(fileName))
+        return false;
+
+    int len = strlen(fileName);
+    if(len<4){
+        printf("invalid filename  \"%s\": it's too short\n",fileName);
+        return false;
+    }
+    char *fileExtension = &fileName[len-4];    
+    if(strcmp(fileExtension,".txt")!=0){
+        printf("invalid file \"%s\": file extension is not .txt\n",fileName);
+        return false;
+    }
+}
+
+bool txtFitsWav(char *wavFileName, char *txtFileName){
+    FILE *tfp=NULL;
+    tfp = fopen(txtFileName,"rb");
+    WAVE *wave=(WAVE*) malloc(sizeof(WAVE));
+    char *text= calloc(1,1);
+    initializeFromFile(wave,wavFileName);
+    while(tfp != EOF)
+        fscanf()
 }
