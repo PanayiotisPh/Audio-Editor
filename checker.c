@@ -1,5 +1,20 @@
 #include "checker.h"
 
+
+bool isNumber(char* str){
+    for (int i = 0; str[i]!= '\0'; i++)
+    {
+        if (isdigit(str[i]) == 0)
+              return false;
+    }
+    return true;
+}
+
+
+
+
+
+
 /**
  * @brief checks if the option from the command line is valid 
  * 
@@ -32,6 +47,8 @@ bool isValidWaveFile(char *fileName){
     }
     char *fileExtension = &fileName[len-4];    
     if(strcmp(fileExtension,".wav")!=0){
+        if(strcmp(fileExtension,".txt")==0)
+            return false;
         printf("invalid filename \"%s\": it's not a .wav file\n",fileName);
         return false;
     }
@@ -110,15 +127,6 @@ bool checkTimings(char* fileName, int start, int end){
 
 }
 
-bool isNumber(char* str){
-    for (int i = 0; str[i]!= '\0'; i++)
-    {
-        if (isdigit(str[i]) == 0)
-              return false;
-    }
-    return true;
-}
-
 bool isTextFile(char *fileName){
     if(isNumber(fileName))
         return false;
@@ -133,6 +141,8 @@ bool isTextFile(char *fileName){
         printf("invalid file \"%s\": file extension is not .txt\n",fileName);
         return false;
     }
+
+    return true;
 }
 
 bool txtFitsWav(char *wavFileName, char *txtFileName){

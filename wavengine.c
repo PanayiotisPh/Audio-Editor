@@ -22,6 +22,7 @@ int main(int argc, char *argv[]){
     numOfValidFiles[0]=0;
     char **validFiles= getValidFiles(argv,numOfValidFiles);
     char *option= argv[1];
+   
     if(validFiles[0]==NULL){
         printf("no valid wave files given\n");
         goto free;
@@ -53,25 +54,22 @@ int main(int argc, char *argv[]){
         }else{
             printf("invalid timings given\n");
         }
-        goto free;
 
-
-
-
-        
+        goto free; 
     }
+
     if(strcmp(option,"-reverse")==0){
         reverseWave(validFiles,numOfValidFiles[0]);
         goto free;
     }
 
-    if(strcmp(option,"-encodeText")){
+    if(strcmp(option,"-encodeText")==0){
         if(!isTextFile(argv[3]))
             goto free;
         if(!txtFitsWav(validFiles[0],argv[3]))
             goto free;    
         encode(validFiles[0],argv[3]);
-        
+
     }
 
     free:
