@@ -61,6 +61,13 @@ int main(int argc, char *argv[]){
         goto free;
     }
 
+    if(strcmp(option,"-encodeText")){
+        if(!isTextFile(argv[3]))
+            goto free;
+
+        encode(validFiles[0],argv[3]);
+    }
+
     free:
         free(validFiles);    
         free(numOfValidFiles);
