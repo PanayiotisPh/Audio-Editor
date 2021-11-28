@@ -138,19 +138,26 @@ bool isTextFile(char *fileName){
 bool txtFitsWav(char *wavFileName, char *txtFileName){
     FILE *tfp=NULL;
     tfp = fopen(txtFileName,"rb");
-    WAVE *wave=(WAVE*) malloc(sizeof(WAVE));
-    char *text= calloc(1,1);
-    initializeFromFile(wave,wavFileName);
-    while(tfp != EOF)
-        fscanf()
-}
-
-
-
-
-size = ftell(fp);       //count file size
-    if (size == 0){     //check if file is empty and ouput a warning message
-        fclose(fp);
-        printf("file is empty\n");
-        return 0;
+    if(tfp == NULL){
+        printf("could not open file %s\n",txtFileName);
+        return false;
     }
+    WAVE *wave=(WAVE*) malloc(sizeof(WAVE));
+    initializeFromFile(wave,wavFileName);
+    int textSize=0;
+
+    fseek(tfp,0,SEEK_END);
+    textSize = ftell(tfp);       //count file size
+    if (textSize == 0){     //check if file is empty and ouput a warning message
+        fclose(tfp);
+        printf("file \"%s\" is empty\n",txtFileName);
+        return false;
+    }
+
+    if(textSize > wave->dataChunk->subchunk2Size/8){
+        printf("cannot fit text file to wave file\n");
+        return false;
+    }
+
+    return true;
+}
