@@ -144,3 +144,13 @@ bool txtFitsWav(char *wavFileName, char *txtFileName){
     while(tfp != EOF)
         fscanf()
 }
+
+
+
+
+size = ftell(fp);       //count file size
+    if (size == 0){     //check if file is empty and ouput a warning message
+        fclose(fp);
+        printf("file is empty\n");
+        return 0;
+    }
