@@ -1,5 +1,16 @@
 #include "checker.h"
 
+
+bool isNumber(char* str){
+    for (int i = 0; str[i]!= '\0'; i++)
+    {
+        if (isdigit(str[i]) == 0)
+              return false;
+    }
+    return true;
+}
+
+
 /**
  * @brief checks if the option from the command line is valid 
  * 
@@ -112,14 +123,7 @@ bool checkTimings(char* fileName, int start, int end){
 
 }
 
-bool isNumber(char* str){
-    for (int i = 0; str[i]!= '\0'; i++)
-    {
-        if (isdigit(str[i]) == 0)
-              return false;
-    }
-    return true;
-}
+
 
 bool isTextFile(char *fileName){
     if(isNumber(fileName))
