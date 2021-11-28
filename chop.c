@@ -30,3 +30,17 @@ void chop(char **files, int numOfFiles, int start, int end){
     }
 
 }
+
+
+
+
+#ifndef DEBUGGING
+#ifdef DEBUGCHOP
+#define DEBUGGING
+
+int main(int argc, char *argv[]){
+    //ADD CODE HERE
+}
+
+#endif
+#endif

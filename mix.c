@@ -85,7 +85,7 @@ void createMixWave(WAVE *mixWave, char *inputFile){
 }
 
 #ifndef DEBUGGING
-#ifdef DEBUGWAVE
+#ifdef DEBUGMIX
 #define DEBUGGING
 
 int main(int argc, char *argv[]){
