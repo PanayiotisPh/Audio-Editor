@@ -5,7 +5,7 @@ void encode(char *waveFile, char *textFile){
     FILE *fp;
     fp = fopen(textFile, "r");
     int i=0;
-    while(!foef(fp)){
+    while(!feof(fp)){
         fscanf(fp,"%c", &text[i]);
         i++;
         text = (char*)realloc(text, i);
