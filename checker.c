@@ -209,7 +209,6 @@ bool txtFitsWav(char *wavFileName, char *txtFileName){
     fseek(tfp,0,SEEK_END);
     textSize = ftell(tfp);       //count file size
     if (textSize == 0){     //check if file is empty and ouput a warning message
-        fclose(tfp);
         printf("file \"%s\" is empty\n",txtFileName);
         fits=false;
         goto free;
@@ -223,6 +222,7 @@ bool txtFitsWav(char *wavFileName, char *txtFileName){
         goto free;
     }
     free: 
+    fclose(tfp);
     deallocWave(wave);
     free(wave);
     return fits;
