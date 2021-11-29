@@ -1,10 +1,9 @@
 #include "encode.h"
 
 void encode(char *waveFile, char *textFile){
-    printf("%s\t%s\n",waveFile,textFile);
-    char *text = (char*)calloc(sizeof(char),1);
+    char *text = (char*)calloc(sizeof(char),1); //used to store text containt
     FILE *fp;
-    fp = fopen(textFile, "r");
+    fp = fopen(textFile, "r");  //open
     int i=0;
     while(!feof(fp)){
         fscanf(fp,"%c", &text[i]);
