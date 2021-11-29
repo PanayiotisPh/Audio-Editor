@@ -11,7 +11,6 @@ void decode(char *waveFile, int len, char *textFile){
     permutation=createPermutationFunction(wave->dataChunk->subchunk2Size, KEY);
 
     int byte,bit,u,x;
-    int textIndex=(1+len)*8;
     int permIndex=0;
     for(byte=0; byte<1+len;byte++){
         char c=NULL;
