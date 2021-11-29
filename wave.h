@@ -49,11 +49,35 @@ typedef struct wave
  DATA_CHUNK *dataChunk;
 }WAVE; 
 
+/**
+ * @brief initialize/allocate moemory for a wave
+ * 
+ * @param wave 
+ */
 void initialize(WAVE *wave);
-void initializeFromFile(WAVE *wave,char *fileName);
-void deallocWave(WAVE *wave);
-void exportWave(char *input, WAVE *wave, char *prefix);
 
-// void readWave(WAVE *wave, FILE *fp);
+/**
+ * @brief initializes a wave from a wavefile
+ * 
+ * @param wave allocate memory for wave before using the method
+ * @param fileName .wav file name
+ */
+void initializeFromFile(WAVE *wave,char *fileName);
+
+/**
+ * @brief deallocate memory of the wave
+ * 
+ * @param wave 
+ */
+void deallocWave(WAVE *wave);
+
+/**
+ * @brief export wave to a file
+ * 
+ * @param orgFileName original file name 
+ * @param wave wave to export
+ * @param prefix prefix to the original file name
+ */
+void exportWave(char *orgFileName, WAVE *wave, char *prefix);
 
 #endif

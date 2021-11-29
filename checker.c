@@ -1,6 +1,12 @@
 #include "checker.h"
 
-
+/**
+ * @brief checks if a string represents a number
+ * 
+ * @param str
+ * @return true 
+ * @return false 
+ */
 bool isNumber(char* str){
     for (int i = 0; str[i]!= '\0'; i++)
     {
@@ -14,7 +20,7 @@ bool isNumber(char* str){
 /**
  * @brief checks if the option from the command line is valid 
  * 
- * @param argv 
+ * @param argv arguments from command line
  * @return true 
  * @return false 
  */
@@ -26,9 +32,9 @@ bool checkOption(char *argv[]){
 }
 
 /**
- * @brief checks if the file name is valid
+ * @brief checks if the wave file is valid
  * 
- * @param fileName 
+ * @param fileName wave file
  * @return true 
  * @return false 
  */
@@ -48,34 +54,36 @@ bool isValidWaveFile(char *fileName){
         printf("invalid filename \"%s\": it's not a .wav file\n",fileName);
         return false;
     }
+
+    bool valid= true;
     WAVE *wave = NULL;
     wave= (WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,fileName);   
     if(wave->fmtChunk->audioFormat!=1){
         printf("invalid file \"%s\": it seems to be compressed (PCM != 1)\n",fileName);
-        deallocWave(wave);
-        free(wave);
-        return false; 
+        valid = false;
+        goto free;
     }
 
     if(wave->fmtChunk->numChannels > 2){
         printf("invalid file \"%s\": file has more than 2 channels\n",fileName);
-        deallocWave(wave);
-        free(wave);
-        return false; 
+        valid = false;
+        goto free;
 
     }
 
+    free:
     deallocWave(wave);
     free(wave);
-    return true;    
+    return valid;    
 }
 
 /**
  * @brief checks and returns the Valid Files from the argument line
  * 
- * @param argv 
- * @return char** 
+ * @param argv arguments from command line
+ * @param numOfValidFiles number of valid files
+ * @return char** a teble with all valid files
  */
 char **getValidFiles(char *argv[],int *numOfValidFiles){
     int i=2;
@@ -86,8 +94,6 @@ char **getValidFiles(char *argv[],int *numOfValidFiles){
         i++;
     }
     char **validFiles= malloc(numOfFiles*sizeof(char*));
-
-
 
     for(i=0;i<numOfFiles;i++){
         char *fileName=argv[2+i];
@@ -101,30 +107,45 @@ char **getValidFiles(char *argv[],int *numOfValidFiles){
     return validFiles;
 }
 
+/**
+ * @brief checks if the timings given are in range with the length of the wave file and 
+ *        that the start time is smaller than the end time
+ * 
+ * @param fileName the name of the wave file
+ * @param start the start time of chopping
+ * @param end the end time of chopping
+ * @return true 
+ * @return false 
+ */
 bool checkTimings(char* fileName, int start, int end){
     if(start>end){
         printf("start time is bigger than end time\n");
         return false;
-    }    
+    } 
+    bool valid = true;   
     WAVE *wave =(WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,fileName);
     int waveTime = (int) wave->dataChunk->subchunk2Size /(int) wave->fmtChunk->byteRate;
     if(start > waveTime || end > waveTime || start < 0|| end < 0 ){
             printf("timings given are not in range of wave file's length, wave's length is %d seconds\n",waveTime);
-            deallocWave(wave);
-            free(wave);
-            return false;
+            valid = false;
+            goto free;
     }
 
+    free:
     deallocWave(wave);
     free(wave);
-    return true;        
-    
-
+    return valid;           
 }
 
 
-
+/**
+ * @brief checks if the file name has a .txt extension
+ * 
+ * @param fileName the .txt file
+ * @return true 
+ * @return false 
+ */
 bool isTextFile(char *fileName){
     if(isNumber(fileName))
         return false;
@@ -142,7 +163,16 @@ bool isTextFile(char *fileName){
     return true;
 }
 
+/**
+ * @brief check if the text file fits to get encoded in the wave file
+ * 
+ * @param wavFileName 
+ * @param txtFileName 
+ * @return true 
+ * @return false 
+ */
 bool txtFitsWav(char *wavFileName, char *txtFileName){
+    bool fits=true;
     FILE *tfp=NULL;
     tfp = fopen(txtFileName,"rb");
     if(tfp == NULL){
@@ -158,15 +188,21 @@ bool txtFitsWav(char *wavFileName, char *txtFileName){
     if (textSize == 0){     //check if file is empty and ouput a warning message
         fclose(tfp);
         printf("file \"%s\" is empty\n",txtFileName);
-        return false;
+        fits=false;
+        goto free;
     }
-
-    if(textSize > wave->dataChunk->subchunk2Size/8){
+    /**
+     * @brief bits in text file should not be more than the bytes in the data of the wave file
+     */
+    if(textSize*8 > wave->dataChunk->subchunk2Size){
         printf("cannot fit text file to wave file\n");
-        return false;
+        fits=false;
+        goto free;
     }
-
-    return true;
+    free: 
+    deallocWave(wave);
+    free(wave);
+    return fits;
 }
 
 
