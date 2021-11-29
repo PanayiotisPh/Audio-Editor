@@ -44,9 +44,15 @@ void chop(char **files, int numOfFiles, int start, int end){
         int endChunk= end*origWave->fmtChunk->byteRate;
         chopWave->dataChunk->data = (byte *)malloc( (endChunk-startChunk) * sizeof(byte));
         chopWave->dataChunk->subchunk2Size= endChunk-startChunk;
-    
+
+        /**
+         * @brief copy data from original wave to the chopped wave from startChunk to endChunk
+         */
         memcpy(&chopWave->dataChunk->data[0], &origWave->dataChunk->data[startChunk], endChunk-startChunk);
 
+        /**
+         * @brief export trimmed to file -> chopped-<filename>
+         */
         exportWave(files[i],chopWave,"chopped-");
         
         deallocWave(chopWave);
