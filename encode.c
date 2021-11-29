@@ -22,7 +22,7 @@
 #include "encode.h"
 
 void encode(char *waveFile, char *textFile){
-    char *text = (char*)calloc(sizeof(char),1); //used to store text containt
+    char *text = (char*)calloc(sizeof(char),2); //used to store text containt
 
     FILE *fp;
     fp = fopen(textFile, "r");  //read text
@@ -30,7 +30,7 @@ void encode(char *waveFile, char *textFile){
     while(!feof(fp)){
         fscanf(fp,"%c", &text[i]);
         i++;
-        text = (char*)realloc(text, i); //fill text with textFile containt
+        text = (char*)realloc(text, i+1); //fill text with textFile containt
     }
     fclose(fp);
     
@@ -47,6 +47,10 @@ void encode(char *waveFile, char *textFile){
         wave->dataChunk->data[x]=u; //store the bit in the wave data
     }
     exportWave(waveFile,wave,"encoded-");   //export the encoded wave
+    deallocWave(wave);
+    free(wave);
+    free(text);
+    free(permutation);
 }
 
 int getBit(char *m, int n){

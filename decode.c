@@ -61,4 +61,5 @@ void decode(char *waveFile, int len, char *textFile){
     deallocWave(wave);
     free(wave);
     free(text);
+    free(permutation);
 }
