@@ -13,9 +13,10 @@ void encode(char *waveFile, char *textFile){
     }
     fclose(fp);
     printf("%ld\n", strlen(text));
-    for(i=0;i<strlen(text)*8-1;i++){
+    for(i=0;i<strlen(text)*8+8;i++){
         printf("%d",getBit(text,i));
     }
+    printf("\nasDGrg\n");
     WAVE *wave =NULL;
     wave = (WAVE*)malloc(sizeof(WAVE));
     initializeFromFile(wave, waveFile);
@@ -24,8 +25,11 @@ void encode(char *waveFile, char *textFile){
     
     int u,x;
     for(i=0;i<(1+strlen(text))*8;i++){
-        
+        u = getBit(text,i);
+        x = permutation[i];
+        wave->dataChunk->data[x]=u;
     }
+    exportWave(waveFile,wave,"encoded-");
 
 }
 int getBit(char *m, int n){
@@ -49,9 +53,6 @@ int *createPermutationFunction(int N, unsigned int systemkey){
         permutation[index1] = permutation[index2];
         permutation[index2] = temp;
     }
-    printf("*****************************\n");
-     for(i=0;i<10;i++)   
-        printf("%d", permutation[i]);
     return permutation;
 }
 
