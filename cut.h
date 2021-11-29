@@ -1,7 +1,7 @@
 /**
- * @file stereoToMono.c
- * @author Panayiotis Fotiadis 1031373
- * @brief converts a wave from stereo to mono 
+ * @file cut.h
+ * @author Panayitis Fotiadis 1031373
+ * @brief cut wave file
  * @version 0.1
  * @date 2021-11-29
  * 
@@ -20,26 +20,21 @@
  * @copyright Copyright (c) 2021
  * 
  */
-
-#ifndef STEREOTOMONO
-#define STEREOTOMONO
+#ifndef CHOP
+#define CHOP
 #include "wave.h"
 
 /**
- * @brief converts the wave in the inputFile from stereo to mono
+ * @brief exports a trimmed wave file
  * 
- * @param inputFiles    waves to be converted
- * @param numOfFiles    number of files to be converted
+ * @param files table of files, it uses only the first one.
+ * @param numOfFiles number of files in **files
+ * @param start start time of trimmed wave
+ * @param end  end time of trimmed wave
  */
-void stereoToMono(char **inputFiles, int numOfFiles);
+void cut(char **files, int numOfFiles, int start, int end);
 
-/**
- * @brief initilize the data in the wave 
- * 
- * @param wave  new wave to store the data
- * @param inputFile     origianl wave data
- */
-void initializeToMono(WAVE *wave, char *inputFile);
+
 
 
 
