@@ -24,10 +24,7 @@
 #ifndef CEHCKER
 #define CHECKER
 #include "wave.h"
-#include <stdbool.h>
-#include <ctype.h>
-#include <stdlib.h>
-#include <stdio.h>
+
 
 /**
  * @brief checks if a string represents a number
