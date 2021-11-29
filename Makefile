@@ -21,7 +21,7 @@ OBJS := $(patsubst %.c, %.o, $(C_FILES))
 # To create the executable file we need the individual
 # object files
 $(PROJ): $(OBJS)
-	$(CC)  -g -o $(PROJ) $(OBJS) 
+	$(CC)  -g -o $(PROJ) $(OBJS) -pg
 	#$(LFLAGS)
 # To create each individual object file we need to
 # compile these files using the following general
