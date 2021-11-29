@@ -60,19 +60,19 @@ int main(int argc, char *argv[]){
         printf("no valid wave files given\n");
         goto free;
     }    
-    if(strcmp(option,"-list")==0){      //if option is list execute -list option
+    if(strcmp(option,"-list")==0){      //if option executed list with -list command
         list(validFiles, numOfValidFiles[0]);
         goto free;
     }
-    if(strcmp(option,"-mono")==0){      //if option is list execute -mono option
+    if(strcmp(option,"-mono")==0){      //if option executed mono with -mono command
         stereoToMono(validFiles, numOfValidFiles[0]);
         goto free;
     }
-    if(strcmp(option,"-mix")==0){       //if option is list execute -mix option
+    if(strcmp(option,"-mix")==0){       //if option executed mix with -mix command
         mixWaves(validFiles,numOfValidFiles[0]);
         goto free;
     }
-    if(strcmp(option,"-chop")==0){      //if option is list execute -chop option
+    if(strcmp(option,"-chop")==0){      //if option executed chop with -chop command
         if(numOfValidFiles[0]!=1 || !isNumber(argv[3]) || !isNumber(argv[4]) ){     //check if arguments are correct (wav file and 2 numbers)
             printf("invalid arguments, please enter only 1 valid .wav file and 2 integers for the seconds' margin\n");
             goto free;
@@ -94,7 +94,7 @@ int main(int argc, char *argv[]){
         goto free;
     }
 
-    if(strcmp(option,"-encodeText")==0){    //if option is list execute -encodeText option
+    if(strcmp(option,"-encodeText")==0){    //if option executed encode with -encodeText command
         if(!isTextFile(argv[3]))        //check if the imported file is wav
             goto free;
         if(!txtFitsWav(validFiles[0],argv[3]))  //check if txt fits wav file
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]){
 
     }
 
-    if(strcmp(option,"-decodeText")==0){        //if option is list execute -decodeText option
+    if(strcmp(option,"-decodeText")==0){        //if option executed decode with -decodeText command
         if(!isNumber(argv[3]))
             goto free;
         if(!isTextFile(argv[4]))
@@ -114,7 +114,7 @@ int main(int argc, char *argv[]){
         goto free;
     }  
 
-     if(strcmp(option,"-changeSpeed")==0){
+     if(strcmp(option,"-changeSpeed")==0){  //if option executed speed change with -changeSpeed command
         if(!isNumber(argv[3]))
             goto free;
 
@@ -122,7 +122,7 @@ int main(int argc, char *argv[]){
         goto free;
     }  
 
-    if(strcmp(option,"-cut")==0){      //if option is list execute -chop option
+    if(strcmp(option,"-cut")==0){      //if option executed cut with -cut command
         if(numOfValidFiles[0]!=1 || !isNumber(argv[3]) || !isNumber(argv[4]) ){     //check if arguments are correct (wav file and 2 numbers)
             printf("invalid arguments, please enter only 1 valid .wav file and 2 integers for the seconds' margin\n");
             goto free;
