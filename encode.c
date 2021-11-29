@@ -61,7 +61,7 @@ int *createPermutationFunction(int N, unsigned int systemkey){
 #define DEBUGGING
 
 int main(int argc, char *argv[]){
-    //ADD CODE HERE
+    encode(argv[1],argv[2]);
 }
 
 #endif

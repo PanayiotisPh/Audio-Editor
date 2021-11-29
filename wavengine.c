@@ -67,7 +67,8 @@ int main(int argc, char *argv[]){
         if(!isTextFile(argv[3]))
             goto free;
         if(!txtFitsWav(validFiles[0],argv[3]))
-            goto free;    
+            goto free;
+        printf("amhere"); 
         encode(validFiles[0],argv[3]);
 
     }
