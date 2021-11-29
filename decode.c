@@ -25,7 +25,7 @@ void decode(char *waveFile, int len, char *textFile){
     }
 
     fprintf(fp,text);
-    
+    fclose(fp);
     deallocWave(wave);
     free(wave);
     free(text);
