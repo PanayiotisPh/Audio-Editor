@@ -19,10 +19,13 @@ void encode(char *waveFile, char *textFile){
     WAVE *wave =NULL;
     wave = (WAVE*)malloc(sizeof(WAVE));
     initializeFromFile(wave, waveFile);
-    int *permutation = malloc(wave->dataChunk->subchunk2Size);
-    permutation = createPermutationFunction(wave->dataChunk->subchunk2Size, 5);
-    for(i=0;i<10;i++)   
-        printf("%d", permutation[i]);
+    int *permutation /*= malloc(wave->dataChunk->subchunk2Size)*/; //axriasto na kameis malloc dame afou kameis malloc sti synartisi pio katw
+    permutation = createPermutationFunction(wave->dataChunk->subchunk2Size, KEY); //dame thelei to KEY oxi 5
+    
+    int u,x;
+    for(i=0;i<(1+strlen(text))*8;i++){
+        
+    }
 
 }
 int getBit(char *m, int n){
@@ -33,18 +36,18 @@ int getBit(char *m, int n){
 }
 
 int *createPermutationFunction(int N, unsigned int systemkey){
-    int *permutation = (int*)malloc(N);
+    int *permutation = (int*)malloc(N*sizeof(int));
     int i,index1,index2,temp;
     srand(systemkey);
     for(i=0;i<N;i++){
         permutation[i]=i;
     }
     for (i=0;i<N;i++){
-        index1 = rand();
-        index2 = rand();
-        temp = index1;
-        index1 = index2;
-        index2 = temp;
+        index1 = rand() % N-1;
+        index2 = rand() % N-1;
+        temp = permutation[index1];
+        permutation[index1] = permutation[index2];
+        permutation[index2] = temp;
     }
     printf("*****************************\n");
      for(i=0;i<10;i++)   

@@ -2,7 +2,7 @@
 #define ENCODE
 #include "wave.h"
 #ifndef KEY
-#define KEY 666
+#define KEY 585
 #endif
 
 void encode(char *waveFile, char *textFile);
