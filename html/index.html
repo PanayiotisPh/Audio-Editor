@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AS4: Main Page</title>
+<title>AS4: EPL232 as4</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,11 +38,26 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div class="header">
+<div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">AS4 Documentation</div>  </div>
+<div class="title">EPL232 as4 </div>  </div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><dl class="section author"><dt>Author</dt><dd>Nikolaos Theodorou (<a href="#" onclick="location.href='mai'+'lto:'+'nth'+'eo'+'d10'+'@u'+'cy.'+'ac'+'.cy'; return false;">ntheo<span style="display: none;">.nosp@m.</span>d10@<span style="display: none;">.nosp@m.</span>ucy.a<span style="display: none;">.nosp@m.</span>c.cy</a>) </dd>
+<dd>
+Panagiotis Fotiadis (<a href="#" onclick="location.href='mai'+'lto:'+'pfo'+'ti'+'a01'+'@u'+'cy.'+'ac'+'.cy'; return false;">pfoti<span style="display: none;">.nosp@m.</span>a01@<span style="display: none;">.nosp@m.</span>ucy.a<span style="display: none;">.nosp@m.</span>c.cy</a>)</dd></dl>
+<p>The program must be compiled with the given Makefile with the command: make The compiled file runs with the command:$./as4 &lt;-option&gt; sound1.wav [ sound2.wav sound3.wav ...] where options are: -list, -mono, -mix, -chop ,-reverse ,-encodeText ,-decodeText ,-changeSpeed, -cut</p>
+<p>The program takes and modifies wavefiles with the options given from the user in the argument line. Ofcourse it checks the argument line has the rightarguments given for each option.</p>
+<p>options explained: -list [sound1.wav sound2.wav ...]: Lists the header of all wave files given in the argument line</p>
+<p>-mono [sound1.wav sound2.wav ...]: Converts all stereo files from the argument line to mono. The converted files are exported as "mono-&lt;originalFileName&gt;"</p>
+<p>-mix sound1.wav sound2.wav: Mixes the left channel of one wave file with the right channel of another wave file</p>
+<p>-chop sound1.wav 2 4: Chops the wave file between a start time and an end time given</p>
+<p>-reverse [sound1.wav sound2.wav ...]: Reverses the wave files given in the argument line</p>
+<p>-encodeText sound1.wav textToEncode.txt: Encodes a text file to the wave file</p>
+<p>-decodeText sound1.wav msgLength out.txt: Decodes a text file of a given length from a wave file to out.txt</p>
+<p>BONUS* -changeSpeed sound1.wav 1.25 : Changes the speed of the wave file,multiplying the speed given in argument line</p>
+<p>BONUS* -cut sound1.wav 2 4: Cuts off the interval given in the argument line from the wave file </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

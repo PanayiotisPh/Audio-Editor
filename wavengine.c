@@ -46,7 +46,7 @@ char* usage="Usage: $./wavengine <-option> sound1.wav [ sound2.wav sound3.wav ..
  */
 int main(int argc, char *argv[]){
     int i;
-    if (argc < 3 || checkOption(argv)){ //checks if the usage command given is valid
+    if (argc < 3 || !checkOption(argv)){ //checks if the usage command given is valid
         printf("%s\n%s",GPL,usage);     
         return -1;
     }

@@ -46,14 +46,14 @@ void decode(char *waveFile, int len, char *textFile){
      * @brief builds a character and then inserts it to the text
      */
     for(byte=0; byte<1+len;byte++){
-        char c=NULL;
+        char c='\0';
         for(bit=7; bit>=0;bit--){ //builds character bit by bit
             x=permutation[permIndex++];
             u= wave->dataChunk->data[x];
             c |= u << bit;
         }
         strncat(text,&c,1);
-        c=NULL;
+        c='\0';
     }
 
     fprintf(fp,text);

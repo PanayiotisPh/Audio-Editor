@@ -1,10 +1,11 @@
 <map id="decode.c" name="decode.c">
-<area shape="rect" id="node1" title="implements decode.h" alt="" coords="143,5,223,32"/>
-<area shape="rect" id="node2" href="$decode_8h.html" title="decodes a text from wave file" alt="" coords="90,80,171,107"/>
-<area shape="rect" id="node8" href="$encode_8h.html" title="used to encode a text file to a wav file" alt="" coords="195,80,277,107"/>
-<area shape="rect" id="node3" href="$wave_8h.html" title=" " alt="" coords="148,155,217,181"/>
+<area shape="rect" id="node1" title="implements decode.h" alt="" coords="193,5,273,32"/>
+<area shape="rect" id="node2" href="$decode_8h.html" title="decodes a text from wave file" alt="" coords="141,80,222,107"/>
+<area shape="rect" id="node9" href="$encode_8h.html" title="used to encode a text file to a wav file" alt="" coords="246,80,327,107"/>
+<area shape="rect" id="node3" href="$wave_8h.html" title="wave structure" alt="" coords="199,155,268,181"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,229,72,256"/>
 <area shape="rect" id="node5" title=" " alt="" coords="97,229,167,256"/>
 <area shape="rect" id="node6" title=" " alt="" coords="192,229,275,256"/>
 <area shape="rect" id="node7" title=" " alt="" coords="299,229,370,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="394,229,465,256"/>
 </map>

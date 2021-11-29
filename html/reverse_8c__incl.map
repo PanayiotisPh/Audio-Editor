@@ -1,9 +1,10 @@
 <map id="reverse.c" name="reverse.c">
-<area shape="rect" id="node1" title="reverse the data of the wave" alt="" coords="141,5,224,32"/>
-<area shape="rect" id="node2" href="$reverse_8h.html" title="reverse the data of the wave" alt="" coords="141,80,224,107"/>
-<area shape="rect" id="node3" href="$wave_8h.html" title=" " alt="" coords="148,155,217,181"/>
+<area shape="rect" id="node1" title="reverse the data of the wave" alt="" coords="192,5,275,32"/>
+<area shape="rect" id="node2" href="$reverse_8h.html" title="reverse the data of the wave" alt="" coords="192,80,275,107"/>
+<area shape="rect" id="node3" href="$wave_8h.html" title="wave structure" alt="" coords="199,155,268,181"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,229,72,256"/>
 <area shape="rect" id="node5" title=" " alt="" coords="97,229,167,256"/>
 <area shape="rect" id="node6" title=" " alt="" coords="192,229,275,256"/>
 <area shape="rect" id="node7" title=" " alt="" coords="299,229,370,256"/>
+<area shape="rect" id="node8" title=" " alt="" coords="394,229,465,256"/>
 </map>
