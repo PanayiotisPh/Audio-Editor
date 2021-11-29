@@ -1,24 +1,17 @@
 #include "decode.h"
 #include "encode.h"
     
-void decode(char *waveFile, char *textFile){
+void decode(char *waveFile, int len, char *textFile){
     WAVE *wave = (WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,waveFile);
-    char *text = (char*)calloc(sizeof(char),1);
+    char *text = (char*)calloc(len,1);
     FILE *fp;
-    fp = fopen(textFile, "r");
-    int i=0;
-    while(!feof(fp)){
-        fscanf(fp,"%c", &text[i]);
-        i++;
-        text = (char*)realloc(text, i);
-    }
-    printf("%ld\n", strlen(text));
-    for(i=0;i<strlen(text)*8;i++){
-        printf("%d",getBit(text,i));
-    }
-
+    fp = fopen(textFile, "wb");
     int *permutation;
     permutation=createPermutationFunction(wave->dataChunk->subchunk2Size/8, KEY);
 
+    int i,u,x;
+    for(i=0; i<(1+len)*8;i++){
+        
+    }
 }
