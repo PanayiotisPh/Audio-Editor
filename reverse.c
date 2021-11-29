@@ -46,13 +46,13 @@ void reverseStereo(WAVE *wave, char *inputFile){
     reverseWave = (WAVE*)malloc(sizeof(WAVE));      //create new wave to store the reversed data
     createReverseWave(reverseWave, inputFile);      //copy the data from file and free the data segment
     int i;
-    int waveCounter = 0;
+    int waveCounter = 0;    //used as index for the data of the original wave
 
-    for(i=wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/4) ; i>=0; i = i-(wave->fmtChunk->bitsPerSample/4)){   //
-        memcpy(&reverseWave->dataChunk->data[i], &wave->dataChunk->data[waveCounter], wave->fmtChunk->bitsPerSample/4);
-        waveCounter = waveCounter + wave->fmtChunk->bitsPerSample/4;
+    for(i=wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/4) ; i>=0; i = i-(wave->fmtChunk->bitsPerSample/4)){   //loop from end to begin from sample to sample
+        memcpy(&reverseWave->dataChunk->data[i], &wave->dataChunk->data[waveCounter], wave->fmtChunk->bitsPerSample/4); //copy the data from origianl to reverseWave
+        waveCounter = waveCounter + wave->fmtChunk->bitsPerSample/4;    //jump to next byte
     }
-    exportWave(inputFile, reverseWave,"reverse-");
+    exportWave(inputFile, reverseWave,"reverse-");  //export Wave
     deallocWave(reverseWave);
     free(reverseWave);
     reverseWave =NULL;
@@ -66,20 +66,20 @@ void reverseMono(WAVE *wave, char *inputFile){
     int waveCounter = 0;
     printf("%d\t%d\n", wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/8), waveCounter);
 
-    for(i=wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/8) ; i>=0; i = i-(wave->fmtChunk->bitsPerSample/8)){
-        memcpy(&reverseWave->dataChunk->data[i], &wave->dataChunk->data[waveCounter], wave->fmtChunk->bitsPerSample/8);
-        waveCounter = waveCounter + wave->fmtChunk->bitsPerSample/8;
+    for(i=wave->dataChunk->subchunk2Size- (wave->fmtChunk->bitsPerSample/8) ; i>=0; i = i-(wave->fmtChunk->bitsPerSample/8)){   //loop from end to begin moving 2 samples(left and right) each time
+        memcpy(&reverseWave->dataChunk->data[i], &wave->dataChunk->data[waveCounter], wave->fmtChunk->bitsPerSample/8); //copy both channels from original wave to reverse wave
+        waveCounter = waveCounter + wave->fmtChunk->bitsPerSample/8;    //move to next 2 samples
     }
-    exportWave(inputFile, reverseWave,"reverse-");
+    exportWave(inputFile, reverseWave,"reverse-");  //export wave
     deallocWave(reverseWave);
     free(reverseWave);
     reverseWave =NULL;
 }
 
 void createReverseWave(WAVE *reverseWave, char *inputFile){
-    initializeFromFile(reverseWave, inputFile);
-    free(reverseWave->dataChunk->data);
-    reverseWave->dataChunk->data = (byte *)malloc(reverseWave->dataChunk->subchunk2Size * sizeof(byte));
+    initializeFromFile(reverseWave, inputFile); //copy the data fro file
+    free(reverseWave->dataChunk->data); //free the data
+    reverseWave->dataChunk->data = (byte *)malloc(reverseWave->dataChunk->subchunk2Size * sizeof(byte));    //assign them new free space
 }
 
 
