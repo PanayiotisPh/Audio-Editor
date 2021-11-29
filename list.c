@@ -23,6 +23,12 @@
 
 #include "list.h"
 
+/**
+ * @brief lists to the display all the headers of the wave files given in the argument line
+ * 
+ * @param files 
+ * @param numOfFiles 
+ */
 void list(char **files, int numOfFiles){
     int i;
     WAVE *tempWave=malloc(sizeof(WAVE));
@@ -40,6 +46,11 @@ void list(char **files, int numOfFiles){
     
 }
 
+/**
+ * @brief prints header to the screen
+ * 
+ * @param wave 
+ */
 void displayInfo(WAVE *wave){
     printf("RIFF_CHUNK_HEADER\n");
     printf("=================\n");

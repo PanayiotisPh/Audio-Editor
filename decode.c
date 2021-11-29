@@ -23,7 +23,14 @@
 
 #include "decode.h"
 #include "encode.h"
-    
+
+ /**
+  * @brief decodes an encoded text from a wavefile
+  * 
+  * @param waveFile wave file
+  * @param len length of message
+  * @param textFile output file
+  */
 void decode(char *waveFile, int len, char *textFile){
     WAVE *wave = (WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,waveFile);
@@ -35,9 +42,12 @@ void decode(char *waveFile, int len, char *textFile){
 
     int byte,bit,u,x;
     int permIndex=0;
+    /**
+     * @brief builds a character and then inserts it to the text
+     */
     for(byte=0; byte<1+len;byte++){
         char c=NULL;
-        for(bit=7; bit>=0;bit--){
+        for(bit=7; bit>=0;bit--){ //builds character bit by bit
             x=permutation[permIndex++];
             u= wave->dataChunk->data[x];
             c |= u << bit;
