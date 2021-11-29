@@ -33,6 +33,7 @@ int getBit(char *m, int n){
 }
 
 int *createPermutationFunction(int N, unsigned int systemkey){
+    printf("amin\n");
     int *permutation = (int*)malloc(N);
     int i,index1,index2,temp;
     srand(systemkey);
