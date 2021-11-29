@@ -4,22 +4,29 @@
 void decode(char *waveFile, int len, char *textFile){
     WAVE *wave = (WAVE*) malloc(sizeof(WAVE));
     initializeFromFile(wave,waveFile);
-    byte text[(len+1)];
+    char* text = (char*)calloc(1,len+1);
     FILE *fp;
-    fp = fopen(textFile, "wb");
+    fp = fopen(textFile, "w");
     int *permutation;
-    permutation=createPermutationFunction(wave->dataChunk->subchunk2Size/8, KEY);
+    permutation=createPermutationFunction(wave->dataChunk->subchunk2Size, KEY);
 
     int byte,bit,u,x;
     int textIndex=(1+len)*8;
-    for(byte=0; byte<1+len;byte++)
+    int permIndex=0;
+    for(byte=0; byte<1+len;byte++){
+        char c=NULL;
         for(bit=7; bit>=0;bit--){
-            x=permutation[bit+byte*8];
-            u= getBit(wave->dataChunk->data,x);
-            text[byte]>>(bit&1) = u;
+            x=permutation[permIndex++];
+            u= wave->dataChunk->data[x];
+            c |= u << bit;
         }
+        strncat(text,&c,1);
+        c=NULL;
+    }
 
-    printf("text: %s",text);
-
-
+    fprintf(fp,text);
+    
+    deallocWave(wave);
+    free(wave);
+    free(text);
 }
