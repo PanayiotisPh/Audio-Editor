@@ -1,0 +1,42 @@
+/**
+@mainpage EPL232 as4
+
+@author Nikolaos Theodorou (ntheod10@ucy.ac.cy)
+@author Panagiotis Fotiadis (pfotia01@ucy.ac.cy)
+
+The program must be compiled with the given Makefile with the command: make
+The compiled file runs with the command:$./as4 <-option> sound1.wav [ sound2.wav sound3.wav ...]
+where options are: -list, -mono, -mix, -chop ,-reverse ,-encodeText ,-decodeText ,-changeSpeed, -cut
+
+The program takes and modifies wavefiles with the options given from the user in the argument line. Ofcourse it checks the argument line has the rightarguments given for each option.
+
+options explained:
+-list [sound1.wav sound2.wav ...]:
+Lists the header of all wave files given in the argument line
+
+-mono  [sound1.wav sound2.wav ...]:
+Converts all stereo files from the argument line to mono. The converted files are exported as "mono-<originalFileName>"
+
+-mix sound1.wav sound2.wav:
+Mixes the left channel of one wave file with the right channel of another wave file
+
+-chop sound1.wav 2 4:
+Chops the wave file between a start time and an end time given
+
+-reverse [sound1.wav sound2.wav ...]:
+Reverses the wave files given in the argument line
+
+-encodeText sound1.wav textToEncode.txt:
+Encodes a text file to the wave file
+
+-decodeText sound1.wav msgLength out.txt:
+Decodes a text file of a given length from a wave file to out.txt
+
+*BONUS*
+-changeSpeed sound1.wav 1.25 :
+Changes the speed of the wave file,multiplying the speed given in argument line
+
+*BONUS*
+-cut sound1.wav 2 4:
+Cuts off the interval given in the argument line from the wave file
+*/
