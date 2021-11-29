@@ -31,9 +31,9 @@
  */
 void changeSpeed(char *fileName, float speedMult){
     WAVE *wave = (WAVE*) malloc(sizeof(WAVE));
-    initializeFromFile(wave,fileName);
-    wave->fmtChunk->sampleRate *= speedMult;
-    exportWave(fileName,wave,"speed-");
-    deallocWave(wave);
+    initializeFromFile(wave,fileName);      //initialize wave file from file
+    wave->fmtChunk->sampleRate *= speedMult;    //change sample Rate to fast forward or slow down
+    exportWave(fileName,wave,"speed-"); //export file
+    deallocWave(wave);      //free memory
     free(wave);
 }
