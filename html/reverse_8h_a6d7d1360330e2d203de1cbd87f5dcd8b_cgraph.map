@@ -1,0 +1,10 @@
+<map id="reverseMono" name="reverseMono">
+<area shape="rect" id="node1" title="reverse a mono wave" alt="" coords="5,101,112,127"/>
+<area shape="rect" id="node2" href="$reverse_8c.html#af83c3acbd6ad086dd6ad2438f54aa08e" title="create the reverse wave with empty data" alt="" coords="160,126,312,153"/>
+<area shape="rect" id="node4" href="$reverse_8c.html#a698ad539c9f822d47ffad609c3f220cb" title="finds if the wave is stereo or mono and jumps to specific function" alt="" coords="360,75,467,102"/>
+<area shape="rect" id="node5" href="$wave_8c.html#a33add43640cf75d4983b67e65368e4cc" title="deallocate memory of the wave" alt="" coords="697,50,803,77"/>
+<area shape="rect" id="node7" href="$wave_8c.html#a97c533faebdbb11691f444d3a8e6c021" title="export wave to a file" alt="" coords="700,126,800,153"/>
+<area shape="rect" id="node3" href="$wave_8c.html#aaed3f081d736b11db461911419fc8262" title="initializes a wave from a wavefile" alt="" coords="515,177,649,203"/>
+<area shape="rect" id="node6" href="$reverse_8c.html#a6d7d1360330e2d203de1cbd87f5dcd8b" title="reverse a mono wave" alt="" coords="529,126,635,153"/>
+<area shape="rect" id="node8" href="$reverse_8c.html#aae6935a4daaf9e70f80a431414e56420" title="reverse a stereo wave" alt="" coords="525,25,639,51"/>
+</map>

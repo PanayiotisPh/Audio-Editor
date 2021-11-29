@@ -1,0 +1,6 @@
+<map id="chop.h" name="chop.h">
+<area shape="rect" id="node1" title="trims wave file" alt="" coords="82,5,147,32"/>
+<area shape="rect" id="node2" href="$cut_8c.html" title="implements cut.h" alt="" coords="5,80,59,107"/>
+<area shape="rect" id="node3" href="$chop_8c.html" title="implements chop.h" alt="" coords="83,80,147,107"/>
+<area shape="rect" id="node4" href="$wavengine_8c.html" title=" " alt="" coords="171,80,275,107"/>
+</map>

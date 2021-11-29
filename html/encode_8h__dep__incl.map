@@ -1,0 +1,6 @@
+<map id="encode.h" name="encode.h">
+<area shape="rect" id="node1" title="used to encode a text file to a wav file" alt="" coords="109,5,190,32"/>
+<area shape="rect" id="node2" href="$encode_8c.html" title="used to encode a text file to a wav file" alt="" coords="5,80,85,107"/>
+<area shape="rect" id="node3" href="$decode_8c.html" title="implements decode.h" alt="" coords="109,80,189,107"/>
+<area shape="rect" id="node4" href="$wavengine_8c.html" title=" " alt="" coords="213,80,317,107"/>
+</map>

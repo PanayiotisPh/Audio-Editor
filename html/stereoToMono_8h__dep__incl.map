@@ -1,0 +1,5 @@
+<map id="stereoToMono.h" name="stereoToMono.h">
+<area shape="rect" id="node1" title="converts a wave from stereo to mono" alt="" coords="74,5,199,32"/>
+<area shape="rect" id="node2" href="$stereoToMono_8c.html" title="converts a wave from stereo to mono" alt="" coords="5,80,129,107"/>
+<area shape="rect" id="node3" href="$wavengine_8c.html" title=" " alt="" coords="154,80,258,107"/>
+</map>

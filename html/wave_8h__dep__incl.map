@@ -1,0 +1,25 @@
+<map id="wave.h" name="wave.h">
+<area shape="rect" id="node1" title=" " alt="" coords="619,5,689,32"/>
+<area shape="rect" id="node2" href="$wave_8c.html" title="implements wave.h" alt="" coords="5,80,73,107"/>
+<area shape="rect" id="node3" href="$reverse_8h.html" title="reverse the data of the wave" alt="" coords="98,80,181,107"/>
+<area shape="rect" id="node5" href="$wavengine_8c.html" title=" " alt="" coords="590,155,694,181"/>
+<area shape="rect" id="node6" href="$speed_8c.html" title="implements speed.h" alt="" coords="1153,80,1225,107"/>
+<area shape="rect" id="node7" href="$speed_8h.html" title="changes the speed of the wave file" alt="" coords="617,80,691,107"/>
+<area shape="rect" id="node8" href="$stereoToMono_8h.html" title="converts a wave from stereo to mono" alt="" coords="205,80,330,107"/>
+<area shape="rect" id="node10" href="$encode_8h.html" title="used to encode a text file to a wav file" alt="" coords="355,80,436,107"/>
+<area shape="rect" id="node13" href="$decode_8h.html" title="decodes a text from wave file" alt="" coords="460,80,541,107"/>
+<area shape="rect" id="node14" href="$chop_8h.html" title="trims wave file" alt="" coords="793,80,859,107"/>
+<area shape="rect" id="node17" href="$cut_8h.html" title="cut wave file" alt="" coords="715,80,769,107"/>
+<area shape="rect" id="node18" href="$checker_8h.html" title="checks arguments for all functions" alt="" coords="883,80,966,107"/>
+<area shape="rect" id="node20" href="$list_8h.html" title="lists to the display all the headers of the wave files given in the argument line" alt="" coords="991,80,1045,107"/>
+<area shape="rect" id="node22" href="$mix_8h.html" title="mixes 2 stereo waves into a new wav file" alt="" coords="1070,80,1129,107"/>
+<area shape="rect" id="node4" href="$reverse_8c.html" title="reverse the data of the wave" alt="" coords="98,155,181,181"/>
+<area shape="rect" id="node9" href="$stereoToMono_8c.html" title="converts a wave from stereo to mono" alt="" coords="205,155,329,181"/>
+<area shape="rect" id="node11" href="$encode_8c.html" title="used to encode a text file to a wav file" alt="" coords="355,155,435,181"/>
+<area shape="rect" id="node12" href="$decode_8c.html" title="implements decode.h" alt="" coords="461,155,541,181"/>
+<area shape="rect" id="node15" href="$cut_8c.html" title="implements cut.h" alt="" coords="718,155,771,181"/>
+<area shape="rect" id="node16" href="$chop_8c.html" title="implements chop.h" alt="" coords="795,155,859,181"/>
+<area shape="rect" id="node19" href="$checker_8c.html" title="implements checker.h" alt="" coords="883,155,966,181"/>
+<area shape="rect" id="node21" href="$list_8c.html" title="implements list.h" alt="" coords="991,155,1045,181"/>
+<area shape="rect" id="node23" href="$mix_8c.html" title="mixes 2 stereo waves into a new wav file" alt="" coords="1070,155,1129,181"/>
+</map>

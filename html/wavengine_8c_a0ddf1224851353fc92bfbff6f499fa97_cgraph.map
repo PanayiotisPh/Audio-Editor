@@ -1,0 +1,30 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="this is the client of the program reads and checks options and the files of the argument line and the..." alt="" coords="5,664,60,691"/>
+<area shape="rect" id="node2" href="$speed_8c.html#aa38376ebcfe65140ef095e47017a8952" title="multiplies the speed of the wave file" alt="" coords="270,613,379,640"/>
+<area shape="rect" id="node6" href="$checker_8c.html#ac5ab1a2c995eda5690e3cd5ef586daa9" title="checks if the option from the command line is valid" alt="" coords="110,1019,213,1045"/>
+<area shape="rect" id="node7" href="$checker_8c.html#a36d2dd693cba962b9a8c2a54a8e701dd" title="checks if the timings given are in range with the length of the wave file and that the start time is ..." alt="" coords="269,765,381,792"/>
+<area shape="rect" id="node8" href="$chop_8c.html#ab32fe0cba32fa5ded7873e2a894ad5fd" title="exports a trimmed wave file" alt="" coords="298,563,351,589"/>
+<area shape="rect" id="node9" href="$cut_8c.html#aa52ca80c5cf4e8753fb49009025f0d71" title="exports a cut wave file" alt="" coords="303,309,346,336"/>
+<area shape="rect" id="node10" href="$decode_8c.html#aa6354ea7bd4746007264cf43bc595e94" title="decodes an encoded text from a wavefile" alt="" coords="290,664,359,691"/>
+<area shape="rect" id="node12" href="$encode_8c.html#a6de3135b8dcef9a26058eb991209695a" title="read a wav file and a text file, and based on a random table it places the text bits into the wav fil..." alt="" coords="290,461,359,488"/>
+<area shape="rect" id="node14" href="$checker_8c.html#a838f13d37074f5a12a6a986b4cd844c7" title="checks and returns the Valid Files from the argument line" alt="" coords="109,867,214,893"/>
+<area shape="rect" id="node16" href="$checker_8c.html#ab81ae5585f6bafa310fd442d006f345e" title="checks if a string represents a number" alt="" coords="491,1019,577,1045"/>
+<area shape="rect" id="node17" href="$checker_8c.html#a38e9b4e21b0796223579072dc274358a" title="checks if the file name has a .txt extension" alt="" coords="120,968,203,995"/>
+<area shape="rect" id="node18" href="$list_8c.html#ae3ca93d05d60a09223e0c89408d88dd6" title="lists to the display all the headers of the wave files given in the argument line" alt="" coords="303,715,346,741"/>
+<area shape="rect" id="node20" href="$mix_8c.html#a9f3a4609be214a7394d0c5b355f563fd" title="mixes 2 wave files placing the left samples of wave 1 and right sample of wave 2 into a new wave" alt="" coords="279,157,370,184"/>
+<area shape="rect" id="node22" href="$reverse_8c.html#a698ad539c9f822d47ffad609c3f220cb" title="finds if the wave is stereo or mono and jumps to specific function" alt="" coords="108,399,215,425"/>
+<area shape="rect" id="node26" href="$stereoToMono_8c.html#aaa0f2019e0e8a1f52d3d1b16fe62c54a" title="converts the wave in the inputFile from stereo to mono" alt="" coords="268,83,381,109"/>
+<area shape="rect" id="node28" href="$checker_8c.html#ad642e4a6f76c6212c0831c5cadc45daf" title="check if the text file fits to get encoded in the wave file" alt="" coords="279,816,370,843"/>
+<area shape="rect" id="node3" href="$wave_8c.html#a33add43640cf75d4983b67e65368e4cc" title="deallocate memory of the wave" alt="" coords="481,512,587,539"/>
+<area shape="rect" id="node4" href="$wave_8c.html#a97c533faebdbb11691f444d3a8e6c021" title="export wave to a file" alt="" coords="484,360,584,387"/>
+<area shape="rect" id="node5" href="$wave_8c.html#aaed3f081d736b11db461911419fc8262" title="initializes a wave from a wavefile" alt="" coords="681,461,816,488"/>
+<area shape="rect" id="node11" href="$encode_8c.html#ae242f550ea5a82151d415796446f1936" title="Create a table and shuffle it randomly." alt="" coords="435,664,633,691"/>
+<area shape="rect" id="node13" href="$encode_8c.html#aba430b212a9f21fb0a4b5c76f50818da" title="finds the bit in the specific location and returns it" alt="" coords="503,411,565,437"/>
+<area shape="rect" id="node15" href="$checker_8c.html#a14a13f5b38d62f4922984394fd9c47f1" title="checks if the wave file is valid" alt="" coords="263,867,387,893"/>
+<area shape="rect" id="node19" href="$list_8c.html#a38504d5f031836605254b6dc079dd695" title="prints header to the screen" alt="" coords="487,765,581,792"/>
+<area shape="rect" id="node21" href="$mix_8c.html#a36cdf55b7b1e08bdc9b5cf1dd547b9b2" title="Create a Mix Wave." alt="" coords="473,157,595,184"/>
+<area shape="rect" id="node23" href="$reverse_8c.html#a6d7d1360330e2d203de1cbd87f5dcd8b" title="reverse a mono wave" alt="" coords="271,411,378,437"/>
+<area shape="rect" id="node25" href="$reverse_8c.html#aae6935a4daaf9e70f80a431414e56420" title="reverse a stereo wave" alt="" coords="268,360,381,387"/>
+<area shape="rect" id="node24" href="$reverse_8c.html#af83c3acbd6ad086dd6ad2438f54aa08e" title="create the reverse wave with empty data" alt="" coords="458,309,610,336"/>
+<area shape="rect" id="node27" href="$stereoToMono_8c.html#ae6bad5cc970658d05cc577015b6ba12e" title="initilize the data in the wave" alt="" coords="470,5,598,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="isTextFile" name="isTextFile">
+<area shape="rect" id="node1" title="checks if the file name has a .txt extension" alt="" coords="5,5,88,32"/>
+<area shape="rect" id="node2" href="$checker_8c.html#ab81ae5585f6bafa310fd442d006f345e" title="checks if a string represents a number" alt="" coords="136,5,221,32"/>
+</map>

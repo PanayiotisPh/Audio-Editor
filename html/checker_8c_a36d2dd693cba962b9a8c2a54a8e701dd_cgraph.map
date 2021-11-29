@@ -1,0 +1,5 @@
+<map id="checkTimings" name="checkTimings">
+<area shape="rect" id="node1" title="checks if the timings given are in range with the length of the wave file and that the start time is ..." alt="" coords="5,31,117,57"/>
+<area shape="rect" id="node2" href="$wave_8c.html#a33add43640cf75d4983b67e65368e4cc" title="deallocate memory of the wave" alt="" coords="180,5,285,32"/>
+<area shape="rect" id="node3" href="$wave_8c.html#aaed3f081d736b11db461911419fc8262" title="initializes a wave from a wavefile" alt="" coords="165,56,300,83"/>
+</map>
