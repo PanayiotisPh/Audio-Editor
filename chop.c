@@ -42,10 +42,16 @@ void chop(char **files, int numOfFiles, int start, int end){
 
         int startChunk= start*origWave->fmtChunk->byteRate;
         int endChunk= end*origWave->fmtChunk->byteRate;
-        chopWave->dataChunk->data = (byte *)malloc( (endChunk-startChunk) * sizeof(byte));
-        chopWave->dataChunk->subchunk2Size= endChunk-startChunk;
-
+        
         /**
+         * @brief redefine headers
+         */
+        chopWave->dataChunk->subchunk2Size= endChunk-startChunk;
+        chopWave->riffChunk->chunkSize=  origWave->riffChunk->chunkSize - origWave->dataChunk->subchunk2Size + chopWave->dataChunk->subchunk2Size;
+       
+        
+        chopWave->dataChunk->data = (byte *)malloc( (endChunk-startChunk) * sizeof(byte));
+         /**
          * @brief copy data from original wave to the chopped wave from startChunk to endChunk
          */
         memcpy(&chopWave->dataChunk->data[0], &origWave->dataChunk->data[startChunk], endChunk-startChunk);
