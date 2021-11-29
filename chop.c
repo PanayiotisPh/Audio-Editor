@@ -23,6 +23,14 @@
 
 #include "chop.h"
 
+/**
+ * @brief exports a trimmed wave file
+ * 
+ * @param files table of files, it uses only the first one.
+ * @param numOfFiles number of files in **files
+ * @param start start time of trimmed wave
+ * @param end  end time of trimmed wave
+ */
 void chop(char **files, int numOfFiles, int start, int end){
     int i;
     for(i=0;i<numOfFiles;i++){
@@ -36,11 +44,7 @@ void chop(char **files, int numOfFiles, int start, int end){
         int endChunk= end*origWave->fmtChunk->byteRate;
         chopWave->dataChunk->data = (byte *)malloc( (endChunk-startChunk) * sizeof(byte));
         chopWave->dataChunk->subchunk2Size= endChunk-startChunk;
-        
-        // int chunkPointer;
-        // for(chunkPointer=startChunk ; chunkPointer<endChunk ; chunkPointer+= origWave->fmtChunk->sampleRate/8  ){
-            
-        // }
+    
         memcpy(&chopWave->dataChunk->data[0], &origWave->dataChunk->data[startChunk], endChunk-startChunk);
 
         exportWave(files[i],chopWave,"chopped-");
