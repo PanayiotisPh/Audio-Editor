@@ -1,7 +1,7 @@
 /**
- * @file chop.c
+ * @file cut.c
  * @author Panayiotis Fotiadis 1031373
- * @brief implements chop.h
+ * @brief implements cut.h
  * @version 0.1
  * @date 2021-11-29
  * 
@@ -24,7 +24,7 @@
 #include "chop.h"
 
 /**
- * @brief exports a trimmed wave file
+ * @brief exports a cut wave file
  * 
  * @param files table of files, it uses only the first one.
  * @param numOfFiles number of files in **files

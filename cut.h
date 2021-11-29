@@ -25,12 +25,12 @@
 #include "wave.h"
 
 /**
- * @brief exports a trimmed wave file
+ * @brief exports a cut wave file
  * 
  * @param files table of files, it uses only the first one.
  * @param numOfFiles number of files in **files
- * @param start start time of trimmed wave
- * @param end  end time of trimmed wave
+ * @param start start time of cut part
+ * @param end  end time of cut part
  */
 void cut(char **files, int numOfFiles, int start, int end);
 
