@@ -73,6 +73,20 @@ int main(int argc, char *argv[]){
 
     }
 
+    if(strcmp(option,"-decodeText")==0){
+        if(!isNumber(argv[3]))
+            goto free;
+        if(!isTextFile(argv[4]))
+            goto free;
+        
+
+        printf("amhere"); 
+        decode(validFiles[0],argv[3],argv[4]);
+
+    }   
+
+
+
     free:
         free(validFiles);    
         free(numOfValidFiles);

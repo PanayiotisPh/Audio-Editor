@@ -5,7 +5,7 @@
 #define KEY 585
 #endif
 
-void decode(char *waveFile, char *textFile);
+void decode(char *waveFile, int len, char *textFile);
 
 
 
