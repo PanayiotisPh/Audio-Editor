@@ -20,8 +20,8 @@
  * @copyright Copyright (c) 2021
  * 
  */
-#ifndef CHOP
-#define CHOP
+#ifndef CUT
+#define CUT
 #include "wave.h"
 
 /**
