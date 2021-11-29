@@ -31,6 +31,7 @@
 #include "encode.h"
 #include "decode.h"
 #include "speed.h"
+#include "cut.h"
 
 #ifndef DEBUGGING
 char* GPL= "\n This program is free software: you can redistribute it and/or modify\n it under the terms of the GNU General Public License as published by\n the Free Software Foundation, either version 3 of the License, or\n at your option) any later version.\n \n This program is distributed in the hope that it will be useful,\n but WITHOUT ANY WARRANTY; without even the implied warranty of\n MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n GNU General Public License for more details in the COPYING file.\n\n See license in COPYING file.";
@@ -120,6 +121,23 @@ int main(int argc, char *argv[]){
         changeSpeed(validFiles[0],atof(argv[3]));
         goto free;
     }  
+
+    if(strcmp(option,"-cut")==0){      //if option is list execute -chop option
+        if(numOfValidFiles[0]!=1 || !isNumber(argv[3]) || !isNumber(argv[4]) ){     //check if arguments are correct (wav file and 2 numbers)
+            printf("invalid arguments, please enter only 1 valid .wav file and 2 integers for the seconds' margin\n");
+            goto free;
+        }
+        
+        int start = atoi(argv[3]);  //convert numbers from int to char
+        int end = atoi(argv[4]);
+        if(checkTimings(validFiles[0],start,end)){  //check if time to chop are valid
+            cut(validFiles,numOfValidFiles[0],start,end);
+            
+        }else{
+            printf("invalid timings given\n");
+        }
+        goto free; 
+    }
 
 
     free:

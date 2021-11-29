@@ -35,31 +35,31 @@ void cut(char **files, int numOfFiles, int start, int end){
     int i;
     for(i=0;i<numOfFiles;i++){
         WAVE *origWave = (WAVE*) malloc(sizeof(WAVE));
-        WAVE *chopWave = (WAVE*) malloc(sizeof(WAVE));
+        WAVE *cutWave = (WAVE*) malloc(sizeof(WAVE));
         initializeFromFile(origWave,files[i]);
-        initializeFromFile(chopWave,files[i]);
-        free(chopWave->dataChunk->data);
+        initializeFromFile(cutWave,files[i]);
+        free(cutWave->dataChunk->data);
 
         int startChunk= start*origWave->fmtChunk->byteRate;
         int endChunk= end*origWave->fmtChunk->byteRate;
-        
-        chopWave->dataChunk->data = (byte *)malloc( (origWave->dataChunk->subchunk2Size-(endChunk-startChunk)) * sizeof(byte));
-        chopWave->dataChunk->subchunk2Size= origWave->dataChunk->subchunk2Size-(endChunk-startChunk);
+
+        cutWave->dataChunk->data = (byte *)malloc( (origWave->dataChunk->subchunk2Size-(endChunk-startChunk)) * sizeof(byte));
+        cutWave->dataChunk->subchunk2Size = origWave->dataChunk->subchunk2Size-(endChunk-startChunk);
+        cutWave->riffChunk->chunkSize = origWave->riffChunk->chunkSize - origWave->dataChunk->subchunk2Size + cutWave->dataChunk->subchunk2Size;
+        /**
+         * @brief copy data from original wave to the cut wave from begin until startChunk and from endChunk until the end
+         */
+        memcpy(&cutWave->dataChunk->data[0], &origWave->dataChunk->data[0], startChunk);
+        memcpy(&cutWave->dataChunk->data[startChunk], &origWave->dataChunk->data[endChunk], origWave->dataChunk->subchunk2Size-endChunk);
+
 
         /**
-         * @brief copy data from original wave to the chopped wave from startChunk to endChunk
+         * @brief export cutted to file -> cut-<filename>
          */
-        memcpy(&chopWave->dataChunk->data[0], &origWave->dataChunk->data[0], startChunk);
-        memcpy(&chopWave->dataChunk->data[startChunk], &origWave->dataChunk->data[endChunk], origWave->dataChunk->subchunk2Size-endChunk);
-
-
-        /**
-         * @brief export trimmed to file -> chopped-<filename>
-         */
-        exportWave(files[i],chopWave,"chopped-");
+        exportWave(files[i],cutWave,"cut-");
         
-        deallocWave(chopWave);
-        free(chopWave);
+        deallocWave(cutWave);
+        free(cutWave);
         deallocWave(origWave);
         free(origWave);
 
