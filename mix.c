@@ -43,14 +43,10 @@ void mixWaves(char **inputFiles, int numOfFiles){
 
     if(wave1->fmtChunk->numChannels != 2 || wave2->fmtChunk->numChannels != 2){ //check if both of them are stereo
         printf("Waves must be Stereo\n");
-        deallocWave(wave1);
-        deallocWave(wave2);
         goto Free;
     }
     if(wave1->fmtChunk->bitsPerSample != wave2->fmtChunk->bitsPerSample){   //check if they have the same bits per sample 
         printf("Waves must have the same BitsPerSample\n");
-        deallocWave(wave1);
-        deallocWave(wave2);
         goto Free;
     }
 
@@ -96,8 +92,10 @@ void mixWaves(char **inputFiles, int numOfFiles){
     Free:
     deallocWave(wave1);
     deallocWave(wave2);
-    wave1 = NULL;
-    wave2 =NULL;
+    deallocWave(mixWaves);
+    free(wave1);
+    free(wave2);
+    free(mixWaves);
 }
 
 
